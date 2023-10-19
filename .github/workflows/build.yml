@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  start:
+    runs-on: windows-latest
+    steps:
+      - name: Start buld
+        run: echo "Build starting..."
+
+  build:
+    needs: code_quality
+    runs-on: windows-latest
+
+    steps:
+      - name: Build
+        run: yarn build
