@@ -1,13 +1,25 @@
-name: Build
+name: Code Quality And Build
 
 on: push
 
 jobs:
-  start:
+  code_quality:
     runs-on: windows-latest
+
     steps:
-      - name: Start buld
-        run: echo "Build starting..."
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check code with ESLint
+        run: yarn lint
 
   build:
     needs: code_quality
