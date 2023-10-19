@@ -1,0 +1,35 @@
+{
+  "name": "modsen-datepicker-library",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lKvasiKl/Modsen-DatePicker-Library.git",
+  "author": "Kirill Vasko <kirill.vasko.2003@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/ --fix",
+    "prettier": "prettier --write .js,.jsx,.ts,.tsx ./src/"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
+    "@types/react": "^18.2.29",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0",
+    "typescript": "^5.2.2"
+  }
+}
