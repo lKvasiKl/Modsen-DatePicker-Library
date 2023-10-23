@@ -15,3 +15,22 @@ export const WEEKDAYS: Weekday = {
   Friday: "Fr",
   Saturday: "Sa",
 };
+
+export enum MONTH {
+  JANUARY,
+  FEBRUARY,
+  MARCH,
+  APRIL,
+  MAY,
+  JUNE,
+  JULY,
+  AUGUST,
+  SEPTEMBER,
+  OCTOBER,
+  NOVEMBER,
+  DECEMBER,
+}
+
+export const DAYS_IN_WEEK = 7;
+export const MIN_CALENDAR_DAYS = 35;
+export const MAX_CALENDAR_DAYS = 42;

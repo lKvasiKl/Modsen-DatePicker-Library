@@ -25,8 +25,8 @@ export const determineTextColor = (
   )
     return COLORS.white;
   if ($rangeState === RANGE_STATE.Between) return COLORS.darkBlue;
-  if ($isWeekend) return COLORS.red;
   if ($isDisabled) return COLORS.lightGray;
+  if ($isWeekend) return COLORS.red;
 
   return COLORS.black;
 };
