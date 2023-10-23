@@ -17,9 +17,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": "./src",
   },
-  "include": ["src"],
+  "include": ["src", "src/components/ThemeWrapper"],
   "exclude": ["node_modules", "lib"]
 }
