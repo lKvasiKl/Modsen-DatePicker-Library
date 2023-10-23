@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-import { baseText, contentCenter, flexColumn } from "./mixins";
 import { FONTS } from "./fonts";
+import { baseText, contentCenter, displayFlex, flexColumn } from "./mixins";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -21,4 +21,10 @@ export const Button = styled.button`
   ${baseText}
   border: none;
   cursor: pointer;
+`;
+
+export const Container = styled.div`
+  ${displayFlex}
+  ${contentCenter}
+  cursor: default;
 `;
