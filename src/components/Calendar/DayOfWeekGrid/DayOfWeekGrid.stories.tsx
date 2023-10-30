@@ -6,11 +6,8 @@ const meta: Meta<typeof DayOfWeekGrid> = {
   title: "Component/DayOfWeekGrid",
   component: DayOfWeekGrid,
   argTypes: {
-    currentDate: {
-      name: "Current date",
-    },
-    isSundayFirst: {
-      name: "Starts with Sunday",
+    isMondayFirst: {
+      name: "Starts with Monday",
     },
   },
 };
@@ -20,14 +17,12 @@ type Story = StoryObj<typeof DayOfWeekGrid>;
 
 export const Primary: Story = {
   args: {
-    currentDate: new Date(),
-    isSundayFirst: true,
+    isMondayFirst: false,
   },
 };
 
 export const MondayFirst: Story = {
   args: {
-    currentDate: new Date(),
-    isSundayFirst: false,
+    isMondayFirst: true,
   },
 };

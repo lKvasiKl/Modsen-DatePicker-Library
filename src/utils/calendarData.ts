@@ -5,33 +5,30 @@ import {
   MONTH,
 } from "constants/calendarData";
 
-export const isWeekendDate = (date: Date): boolean => {
-  return date.getDay() === 0 || date.getDay() === 6;
-};
-
-export const isCurrentMonth = (date: Date, currentDate: Date) => {
-  return date.getMonth() !== currentDate.getMonth();
+export const isCurrentMonth = (date: Date, selectedMonth: number) => {
+  return date.getMonth() !== selectedMonth;
 };
 
 export const isSelectedDay = (date: Date, selectedDate: Date): boolean => {
   const day = date.getDate();
+  const month = date.getMonth();
   const selectedDay = selectedDate.getDate();
+  const selectedMonth = selectedDate.getMonth();
 
-  return day === selectedDay;
+  return day === selectedDay && month === selectedMonth;
 };
-
 export const getDaysInMonth = (year: number, month: number) => {
   const date = new Date(year, month + 1, 0);
 
   return date.getDate();
 };
 
-export const getMonthFirstDay = (currentDate: Date) => {
-  const firstDayOfMonth = new Date(currentDate);
-  firstDayOfMonth.setDate(1);
+function getMonthFirstDay(year: number, month: number) {
+  const firstDayOfMonth = new Date(year, month, 1);
+  const dayOfWeek = firstDayOfMonth.getDay();
 
-  return firstDayOfMonth.getDay();
-};
+  return dayOfWeek;
+}
 
 export const getLastDayOfPreviousMonth = (currentDate: Date) => {
   let year = currentDate.getFullYear();
@@ -40,7 +37,7 @@ export const getLastDayOfPreviousMonth = (currentDate: Date) => {
   let prevMonth = month - 1;
 
   if (prevMonth === -1) {
-    prevMonth = MONTH.DECEMBER;
+    prevMonth = MONTH.December;
     year--;
   }
 
@@ -65,18 +62,20 @@ const getNextMonth = (month: number, year: number) => {
   }
 };
 
-export const getCalendarData = (currentDate: Date, isSundayFirst: boolean) => {
-  let monthNumber = currentDate.getMonth();
-  let year = currentDate.getFullYear();
+export const getCalendarData = (
+  monthNumber: number,
+  year: number,
+  isMondayFirst?: boolean,
+) => {
   const totalDaysInMonth = getDaysInMonth(year, monthNumber);
-  const monthFirstDay = getMonthFirstDay(currentDate);
+  const monthFirstDay = getMonthFirstDay(year, monthNumber);
   const calendarData = [];
 
   let daysFromPrevMonth;
-  if (isSundayFirst) {
-    daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay) % DAYS_IN_WEEK;
-  } else {
+  if (isMondayFirst) {
     daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay - 1) % DAYS_IN_WEEK;
+  } else {
+    daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay) % DAYS_IN_WEEK;
   }
 
   const { month: prevMonth, year: prevMonthYear } = getPreviousMonth(

@@ -1,3 +1,3 @@
 export interface WeekdaysHeaderProps {
-  isSundayFirst: boolean;
+  isMondayFirst?: boolean;
 }

@@ -1,5 +1,5 @@
 declare module "*.svg" {
-  const content: Icon;
+  const content: string;
   export const ReactComponent;
   export default content;
 }

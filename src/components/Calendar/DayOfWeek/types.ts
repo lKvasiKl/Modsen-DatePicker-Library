@@ -4,9 +4,10 @@ export interface DayOfWeekProps {
   dayOfWeek: Date;
   isSelected: boolean;
   isDisabled: boolean;
-  isWeekend: boolean;
+  isWeekend?: boolean;
   rangeState?: RANGE_STATE;
-  onClick?: () => void;
+  minDate?: Date;
+  maxDate?: Date;
 }
 
 export interface DayOfWeekStyleProps {
