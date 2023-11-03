@@ -1,69 +1,106 @@
 import React, { useMemo } from "react";
 
 import {
-  getCalendarData,
+  getCalendarMonthData,
+  getCalendarWeekData,
+  getCalendarYearData,
   isCurrentMonth,
   isSelectedDay,
 } from "utils/calendarData";
 import { useCalendar } from "providers/CalendarProvider";
-import { DayOfWeek } from "components";
+import { DayOfWeek, WeekdaysHeader } from "components";
+import { DAYS_IN_WEEK, MONTH } from "constants/calendarData";
 
+import { CALENDAR_TYPES } from "../types";
 import { DayOfWeekGridProps } from "./types";
-import { DayOfWeekGridContainer } from "./styled";
-import { RANGE_STATE } from "constants/calendarData";
+import {
+  DayOfWeekGridContainer,
+  MiniCalendarWrapper,
+  MonthText,
+  YearCalendarContainer,
+} from "./styled";
 
 const DayOfWeekGrid = React.memo(
   ({
+    type,
     isMondayFirst,
     isWeekendDate,
-    range,
+    isWithRange,
     minDate,
     maxDate,
+    isTodosEnabled,
+    isHolidayDate,
   }: DayOfWeekGridProps) => {
-    const { selectedDate, selectedMonth, selectedYear } = useCalendar();
+    const { firstDateOfWeek, selectedDate, selectedMonth, selectedYear } =
+      useCalendar();
 
-    const MONTH_DAYS = useMemo(
-      () => getCalendarData(selectedMonth, selectedYear, isMondayFirst),
-      [selectedMonth, selectedYear, isMondayFirst],
-    );
-
-    const getRangeState = (date: Date) => {
-      if (range && range.rangeStart && range.rangeEnd) {
-        const isStartDate = date.getTime() === range.rangeStart.getTime();
-        const isEndDate = date.getTime() === range.rangeEnd.getTime();
-        const isBetween = date > range.rangeStart && date < range.rangeEnd;
-
-        if (isStartDate) {
-          return RANGE_STATE.Start;
-        }
-
-        if (isEndDate) {
-          return RANGE_STATE.End;
-        }
-
-        if (isBetween) {
-          return RANGE_STATE.Between;
-        }
+    const GREED_DATA = useMemo(() => {
+      if (type === CALENDAR_TYPES.Week) {
+        return getCalendarWeekData(firstDateOfWeek);
+      } else if (type === CALENDAR_TYPES.Month) {
+        return getCalendarMonthData(selectedMonth, selectedYear, isMondayFirst);
       }
-    };
+    }, [firstDateOfWeek, selectedMonth, selectedYear, isMondayFirst, type]);
+
+    const YEAR_GREED_DATA = useMemo(() => {
+      if (type === CALENDAR_TYPES.Year) {
+        return getCalendarYearData(selectedYear, isMondayFirst);
+      }
+    }, [selectedYear, isMondayFirst]);
 
     return (
-      <DayOfWeekGridContainer>
-        {MONTH_DAYS.map((date, index) => {
-          return (
-            <DayOfWeek
-              key={index}
-              dayOfWeek={date}
-              isSelected={isSelectedDay(date, selectedDate)}
-              isDisabled={isCurrentMonth(date, selectedMonth)}
-              isWeekend={isWeekendDate && isWeekendDate(date)}
-              rangeState={getRangeState(date)}
-              minDate={minDate}
-              maxDate={maxDate}
-            />
-          );
-        })}
-      </DayOfWeekGridContainer>
+      <>
+        {GREED_DATA && (
+          <DayOfWeekGridContainer>
+            {GREED_DATA!.map((date) => {
+              return (
+                <DayOfWeek
+                  key={date.getTime()}
+                  dayOfWeek={date}
+                  isSelected={isSelectedDay(date, selectedDate)}
+                  isDisabled={isCurrentMonth(date, selectedMonth)}
+                  isWeekend={isWeekendDate && isWeekendDate(date)}
+                  isWithRange={isWithRange}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  isTodosEnabled={isTodosEnabled}
+                  isHoliday={isHolidayDate && isHolidayDate(date)}
+                />
+              );
+            })}
+          </DayOfWeekGridContainer>
+        )}
+        {type === CALENDAR_TYPES.Year && YEAR_GREED_DATA && (
+          <YearCalendarContainer>
+            {YEAR_GREED_DATA.map((month) => {
+              const currentMonth = month[DAYS_IN_WEEK].getMonth();
+
+              return (
+                <MiniCalendarWrapper key={month[DAYS_IN_WEEK].getTime()}>
+                  <MonthText>{MONTH[currentMonth]}</MonthText>
+                  <WeekdaysHeader isMondayFirst={isMondayFirst} />
+                  <DayOfWeekGridContainer>
+                    {month.map((date) => (
+                      <DayOfWeek
+                        key={date.getTime()}
+                        dayOfWeek={date}
+                        isSelected={isSelectedDay(date, selectedDate)}
+                        isDisabled={isCurrentMonth(date, currentMonth)}
+                        isWeekend={isWeekendDate && isWeekendDate(date)}
+                        isWithRange={isWithRange}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        isTodosEnabled={isTodosEnabled}
+                        isHoliday={isHolidayDate && isHolidayDate(date)}
+                      />
+                    ))}
+                  </DayOfWeekGridContainer>
+                </MiniCalendarWrapper>
+              );
+            })}
+          </YearCalendarContainer>
+        )}
+      </>
     );
   },
 );

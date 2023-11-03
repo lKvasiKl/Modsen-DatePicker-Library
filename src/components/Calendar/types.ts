@@ -1,14 +1,20 @@
-import { Range } from "decorators/withRange/types";
-
 export interface CalendarProps {
+  type: CALENDAR_TYPES;
   isMondayFirst?: boolean;
   isWeekendDate?: (date: Date) => boolean;
-  range?: Range;
-  setRange?: React.Dispatch<React.SetStateAction<Range | undefined>>;
+  isWithRange?: boolean;
   minDate?: Date;
   maxDate?: Date;
+  isTodosEnabled?: boolean;
+  isHolidayDate?: (date: Date) => boolean;
 }
 
 export interface CalendarStyledProps {
-  $isRangeExist: boolean;
+  $isWithRange?: boolean;
+}
+
+export enum CALENDAR_TYPES {
+  Week = 1,
+  Month = 2,
+  Year = 3,
 }

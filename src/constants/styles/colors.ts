@@ -10,4 +10,6 @@ export const COLORS: Colors = {
   blue: "#2f80ed99",
   lightBlue: "#2f80ed1a",
   red: "#b91414",
+  orange: "#f97e00",
+  acqua: "#41dad6",
 };

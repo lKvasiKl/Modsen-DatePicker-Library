@@ -17,6 +17,7 @@ export const determineTextColor = (
   $isDisabled: boolean,
   $isWeekend: boolean,
   $rangeState: RANGE_STATE | undefined,
+  $isHoliday: boolean,
 ): string => {
   if (
     $isSelected ||
@@ -24,6 +25,7 @@ export const determineTextColor = (
     $rangeState === RANGE_STATE.End
   )
     return COLORS.white;
+  if ($isHoliday) return COLORS.orange;
   if ($rangeState === RANGE_STATE.Between) return COLORS.darkBlue;
   if ($isDisabled) return COLORS.lightGray;
   if ($isWeekend) return COLORS.red;

@@ -2,6 +2,8 @@ import React from "react";
 import type { Preview } from "@storybook/react";
 
 import { ThemeWrapper } from "../src/components";
+import { CalendarProvider } from "../src/providers/CalendarProvider";
+import { DateProvider } from "../src/providers/DateProvider";
 
 const preview: Preview = {
   parameters: {
@@ -17,7 +19,11 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ThemeWrapper>
-        <Story />
+        <CalendarProvider>
+          <DateProvider>
+            <Story />
+          </DateProvider>
+        </CalendarProvider>
       </ThemeWrapper>
     ),
   ],

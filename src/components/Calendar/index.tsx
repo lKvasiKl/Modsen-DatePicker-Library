@@ -1,57 +1,61 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 
-import MonthSlider from "./MonthSlider";
+import GreedSlider from "./GreedSlider";
 import DayOfWeekGrid from "./DayOfWeekGrid";
 import WeekdaysHeader from "./WeekdaysHeader";
 import ClearButton from "./ClearButton";
-import { CalendarProvider } from "providers/CalendarProvider";
 
-import { CalendarProps } from "./types";
+import { CALENDAR_TYPES, CalendarProps } from "./types";
 import { CalendarContainer } from "./styled";
-import { DateProvider } from "providers/DateProvider";
+import { useDate } from "providers/DateProvider";
+import { getCalendarYearData } from "utils/calendarData";
 
 const Calendar = ({
+  type = CALENDAR_TYPES.Month,
   isMondayFirst,
   isWeekendDate,
-  range,
-  setRange,
+  isWithRange,
   minDate,
   maxDate,
+  isTodosEnabled,
+  isHolidayDate,
 }: CalendarProps) => {
-  const [isRangeExist, setIsRangeExist] = useState<boolean>(false);
+  const { setRange } = useDate();
 
   const handlClearButtonClick = useCallback(() => {
     if (setRange) {
-      setIsRangeExist(false);
       setRange(undefined);
     }
-  }, [setRange]);
-
-  useEffect(() => {
-    if (range && range.rangeStart && range.rangeEnd) {
-      setIsRangeExist(true);
-    }
-  }, [range]);
+  }, []);
 
   return (
-    <CalendarProvider>
-      <DateProvider>
-        <CalendarContainer $isRangeExist={isRangeExist}>
-          <MonthSlider minDate={minDate} maxDate={maxDate} />
-          <WeekdaysHeader isMondayFirst={isMondayFirst} />
-          <DayOfWeekGrid
-            isMondayFirst={isMondayFirst}
-            isWeekendDate={isWeekendDate}
-            range={range}
-            minDate={minDate}
-            maxDate={maxDate}
-          />
-        </CalendarContainer>
-        {isRangeExist && (
-          <ClearButton title="Clear" onClearClick={handlClearButtonClick} />
-        )}
-      </DateProvider>
-    </CalendarProvider>
+    <>
+      <CalendarContainer $isWithRange={isWithRange}>
+        <GreedSlider
+          type={type}
+          minDate={minDate}
+          maxDate={maxDate}
+          isMondayFirst={isMondayFirst}
+        />
+        {type === CALENDAR_TYPES.Week ||
+          (type === CALENDAR_TYPES.Month && (
+            <WeekdaysHeader isMondayFirst={isMondayFirst} />
+          ))}
+        <DayOfWeekGrid
+          type={type}
+          isMondayFirst={isMondayFirst}
+          isWeekendDate={isWeekendDate}
+          isWithRange={isWithRange}
+          minDate={minDate}
+          maxDate={maxDate}
+          isTodosEnabled={isTodosEnabled}
+          isHolidayDate={isHolidayDate}
+        />
+      </CalendarContainer>
+      {isWithRange && (
+        <ClearButton title="Clear" onClearClick={handlClearButtonClick} />
+      )}
+    </>
   );
 };
 

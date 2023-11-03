@@ -12,8 +12,8 @@ export const CalendarContainer = styled(Container)<CalendarStyledProps>`
   padding: ${spaceM}px;
   background-color: ${whiteColor};
   border: 1px solid ${grayColor};
-  border-bottom: ${({ $isRangeExist }) => $isRangeExist && `none`};
-  border-radius: ${({ $isRangeExist }) =>
-    $isRangeExist ? `8px 8px 0 0` : "8px"};
+  border-bottom: ${({ $isWithRange }) => $isWithRange && `none`};
+  border-radius: ${({ $isWithRange }) =>
+    $isWithRange ? `8px 8px 0 0` : "8px"};
   flex-direction: column;
 `;

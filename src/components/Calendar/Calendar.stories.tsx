@@ -1,54 +1,94 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import CalendarService from "decorators";
-import withMinAndMaxDate from "decorators/withMinAndMaxDate";
-import withMondayFirst from "decorators/withMondayFirst";
-import withRange from "decorators/withRange";
-import withWeekendsDays from "decorators/withWeekends";
+import { isHolidayDate, isWeekendDate } from "utils/calendarData";
 
-const calendarService = new CalendarService();
-const DefaultCalendar = calendarService.getCalendar();
+import Calendar from "./index";
+import { CALENDAR_TYPES } from "./types";
 
-const meta: Meta<typeof DefaultCalendar> = {
+const CALENDAR_TYPE_LABELS = {
+  [CALENDAR_TYPES.Week]: "Week",
+  [CALENDAR_TYPES.Month]: "Month",
+  [CALENDAR_TYPES.Year]: "Year",
+};
+
+const meta: Meta<typeof Calendar> = {
   title: "Component/Calendar",
-  component: DefaultCalendar,
+  component: Calendar,
   argTypes: {
-    isMondayFirst: { name: "Starts with Monday" },
-    isWeekendDate: { name: "With weekends" },
-    range: { name: "Range" },
-  },
-  parameters: {
-    actions: {},
+    type: {
+      name: "Calendar type",
+      control: {
+        type: "select",
+        options: Object.values(CALENDAR_TYPES),
+        labels: CALENDAR_TYPE_LABELS,
+      },
+    },
+    isMondayFirst: { name: "Is Monday First" },
+    isWeekendDate: {
+      table: {
+        disable: true,
+      },
+    },
+    isHolidayDate: {
+      table: {
+        disable: true,
+      },
+    },
+    minDate: {
+      name: "Min calendar Date",
+      control: "none",
+    },
+    maxDate: {
+      name: "Max calendar Date",
+      control: "none",
+    },
+    isWithRange: { name: "Is with range" },
+    isTodosEnabled: {
+      name: "Is Todo enabled",
+    },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof DefaultCalendar>;
+type Story = StoryObj<typeof Calendar>;
 
-export const Primary: Story = {
-  render: () => <DefaultCalendar />,
-};
+export const Primary: Story = {};
 
-calendarService.addDecorator(withMondayFirst);
-const CalendarWithMondayFirst = calendarService.getCalendar();
 export const WithMondayFirst: Story = {
-  render: () => <CalendarWithMondayFirst />,
+  args: {
+    isMondayFirst: true,
+  },
 };
 
-calendarService.addDecorator(withWeekendsDays);
-const CalendarWithWeekends = calendarService.getCalendar();
 export const WithWeekends: Story = {
-  render: () => <CalendarWithWeekends />,
+  args: {
+    isWeekendDate: isWeekendDate,
+  },
 };
 
-calendarService.addDecorator(withRange);
-const CalendarWithRange = calendarService.getCalendar();
-export const WithRange: Story = {
-  render: () => <CalendarWithRange />,
+export const WithHolidays: Story = {
+  args: {
+    isHolidayDate: isHolidayDate,
+  },
 };
 
-calendarService.addDecorator(withMinAndMaxDate);
-const CalendarWithMinAndMaxDate = calendarService.getCalendar();
 export const WithMinAndMaxDate: Story = {
-  render: () => <CalendarWithMinAndMaxDate />,
+  args: {
+    minDate: new Date(2022, 0, 1),
+    maxDate: new Date(2025, 11, 1),
+  },
+};
+
+export const WithRange: Story = {
+  args: {
+    isWeekendDate: isWeekendDate,
+    isWithRange: true,
+  },
+};
+
+export const WithTodos: Story = {
+  args: {
+    isWeekendDate: isWeekendDate,
+    isTodosEnabled: true,
+  },
 };

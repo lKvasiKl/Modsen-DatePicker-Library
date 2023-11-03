@@ -34,3 +34,4 @@ export enum MONTH {
 export const DAYS_IN_WEEK = 7;
 export const MIN_CALENDAR_DAYS = 35;
 export const MAX_CALENDAR_DAYS = 42;
+export const MONTH_COUNT = 12;

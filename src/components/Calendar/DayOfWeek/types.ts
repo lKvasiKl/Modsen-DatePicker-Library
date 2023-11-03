@@ -5,9 +5,11 @@ export interface DayOfWeekProps {
   isSelected: boolean;
   isDisabled: boolean;
   isWeekend?: boolean;
-  rangeState?: RANGE_STATE;
+  isWithRange?: boolean;
   minDate?: Date;
   maxDate?: Date;
+  isTodosEnabled?: boolean;
+  isHoliday?: boolean;
 }
 
 export interface DayOfWeekStyleProps {
@@ -15,4 +17,5 @@ export interface DayOfWeekStyleProps {
   $isDisabled: boolean;
   $isWeekend: boolean;
   $rangeState?: RANGE_STATE;
+  $isHoliday: boolean;
 }

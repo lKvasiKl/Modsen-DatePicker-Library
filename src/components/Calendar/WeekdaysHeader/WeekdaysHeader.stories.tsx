@@ -6,7 +6,7 @@ const meta: Meta<typeof WeekdaysHeader> = {
   title: "Component/WeekdaysHeader",
   component: WeekdaysHeader,
   argTypes: {
-    isSundayFirst: {
+    isMondayFirst: {
       name: "Starts with Sunday",
       isSundayFirst: true,
     },
@@ -18,12 +18,12 @@ type Story = StoryObj<typeof WeekdaysHeader>;
 
 export const Primary: Story = {
   args: {
-    isSundayFirst: true,
+    isMondayFirst: true,
   },
 };
 
 export const MondayFirst: Story = {
   args: {
-    isSundayFirst: false,
+    isMondayFirst: false,
   },
 };

@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RANGE_STATE } from "constants/calendarData";
 import DayOfWeek from "./index";
 
 const meta: Meta<typeof DayOfWeek> = {
@@ -18,11 +17,6 @@ const meta: Meta<typeof DayOfWeek> = {
     },
     isWeekend: {
       name: "Weekend status",
-    },
-    rangeState: {
-      name: "Range state",
-      control: "radio",
-      options: Object.values(RANGE_STATE),
     },
   },
 };
@@ -63,35 +57,5 @@ export const Weekend: Story = {
     isSelected: false,
     isDisabled: false,
     isWeekend: true,
-  },
-};
-
-export const RangeStart: Story = {
-  args: {
-    dayOfWeek: new Date(2023, 9, 22),
-    isSelected: false,
-    isDisabled: false,
-    isWeekend: false,
-    rangeState: RANGE_STATE.Start,
-  },
-};
-
-export const RangeBetween: Story = {
-  args: {
-    dayOfWeek: new Date(2023, 9, 22),
-    isSelected: false,
-    isDisabled: false,
-    isWeekend: false,
-    rangeState: RANGE_STATE.Between,
-  },
-};
-
-export const RangeEnd: Story = {
-  args: {
-    dayOfWeek: new Date(2023, 9, 22),
-    isSelected: false,
-    isDisabled: false,
-    isWeekend: false,
-    rangeState: RANGE_STATE.End,
   },
 };
