@@ -63,18 +63,18 @@
               "position": "after"
             }
          
-          ],
-          "pathGroupsExcludedImportTypes": ["internal"],
-          "groups": ["external", "internal", "parent", "sibling", "index", "object", "type"]
-        }
-      ],
-      "react/jsx-sort-props": [
-        "warn",
-        {
-          "callbacksLast": true,
-          "shorthandFirst": true,
-          "noSortAlphabetically": false
-        }
-      ]
-    }
+        ],
+        "pathGroupsExcludedImportTypes": ["internal"],
+        "groups": ["external", "internal", "parent", "sibling", "index", "object", "type"]
+      }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "noSortAlphabetically": false
+      }
+    ]
   }
+}
