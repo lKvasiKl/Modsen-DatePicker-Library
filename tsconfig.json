@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["@testing-library/jest-dom", "jest-styled-components"],
     "target": "es5",
     "outDir": "lib",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -12,14 +13,13 @@
     "declarationDir": "lib",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": "./src",
   },
-  "include": ["src"],
   "exclude": ["node_modules", "lib"]
 }
