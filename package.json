@@ -15,8 +15,8 @@
     "test": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d lib"
+    "predeploy": "npm run build-storybook",
+    "deploy": "gh-pages -d storybook-static"
   },
   "peerDependencies": {
     "react": "^18.2.0",
