@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface DatePickerInputProps {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;

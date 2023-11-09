@@ -1,7 +1,8 @@
 import { ComponentType } from "react";
 
-import { CalendarProps } from "components/Calendar/types";
 import { useDate } from "providers/DateProvider";
+
+import { CalendarProps } from "components/Calendar/types";
 
 type CalendarPropKeys = keyof CalendarProps;
 
@@ -19,7 +20,7 @@ const withMinAndMaxDate = <T extends WithMinAndMaxDateProps>(
     const { minDate, maxDate } = useDate();
 
     return (
-      <WrappedComponent {...(props as T)} minDate={minDate} maxDate={maxDate} />
+      <WrappedComponent {...(props as T)} maxDate={maxDate} minDate={minDate} />
     );
   };
 

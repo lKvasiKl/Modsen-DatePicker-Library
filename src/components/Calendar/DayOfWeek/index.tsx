@@ -1,10 +1,13 @@
 import React, { useCallback, useState } from "react";
 
 import { useCalendar } from "providers/CalendarProvider";
-import usePortal from "hooks/usePortal";
-import TodosModal from "components/TodosModal";
-import { RANGE_STATE } from "constants/calendarData";
 import { useDate } from "providers/DateProvider";
+
+import TodosModal from "components/TodosModal";
+
+import usePortal from "hooks/usePortal";
+
+import { RANGE_STATE } from "constants/calendarData";
 
 import { DayOfWeekProps } from "./types";
 import { DayOfWeekButton } from "./styled";
@@ -56,7 +59,20 @@ const DayofWeek = React.memo(
       if (isTodosEnabled) {
         setIsTodoModalOpen(true);
       }
-    }, [dayOfWeek, month, year, range]);
+    }, [
+      minDate,
+      dayOfWeek,
+      maxDate,
+      isTodosEnabled,
+      setSelectedDate,
+      setSelectedMonth,
+      month,
+      setSelectedYear,
+      year,
+      isWithRange,
+      range,
+      setRange,
+    ]);
 
     const handleCloseTodoModal = useCallback(() => {
       setIsTodoModalOpen(false);
@@ -85,11 +101,12 @@ const DayofWeek = React.memo(
     return (
       <>
         <DayOfWeekButton
-          $isSelected={isSelected}
           $isDisabled={isDisabled}
+          $isHoliday={isHoliday}
+          $isSelected={isSelected}
           $isWeekend={isWeekend}
           $rangeState={getRangeState(dayOfWeek)}
-          $isHoliday={isHoliday}
+          data-testid="day-of-week"
           onClick={handleSelectDate}
         >
           {day}

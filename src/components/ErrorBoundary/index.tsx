@@ -38,7 +38,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
     if (hasError) {
       return (
-        <ErrorBoundaryContainer>
+        <ErrorBoundaryContainer data-testid="error-boundary">
           <Title>{ERROR_TITLE}</Title>
           <Error>{error && error.toString()}</Error>
           <Text>{ERROR_TEXT}</Text>

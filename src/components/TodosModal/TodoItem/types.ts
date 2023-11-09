@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Todo } from "../types";
 
 export interface TodoItemProps {

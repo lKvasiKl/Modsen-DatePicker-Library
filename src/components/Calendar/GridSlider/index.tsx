@@ -1,18 +1,22 @@
 import React, { useCallback, useEffect } from "react";
 
-import NextGreedIcon from "assets/icons/next.svg";
-import PrevGreedIcon from "assets/icons/prev.svg";
+import { useCalendar } from "providers/CalendarProvider";
+
+import { getFirstDayOfWeek } from "utils/calendarDateData";
+
 import { Icon } from "constants/styles/global";
 import { DAYS_IN_WEEK, MONTH, MONTH_COUNT } from "constants/calendarData";
-import { useCalendar } from "providers/CalendarProvider";
-import { getFirstDayOfWeek } from "utils/calendarData";
+
+import NextGreedIcon from "assets/icons/next.svg";
+import PrevGreedIcon from "assets/icons/prev.svg";
 
 import { CALENDAR_TYPES } from "../types";
-import { Direction, GreedSliderProps, PREV_GREED, NEXT_GREED } from "./types";
+
+import { Direction, GridSliderProps, PREV_GRID, NEXT_GRID } from "./types";
 import { SliderButton, SliderContainer, Title } from "./styled";
 
-const GreedSlider = React.memo(
-  ({ type, minDate, maxDate, isMondayFirst }: GreedSliderProps) => {
+const GridSlider = React.memo(
+  ({ type, minDate, maxDate, isMondayFirst }: GridSliderProps) => {
     const {
       selectedDate,
       firstDateOfWeek,
@@ -25,21 +29,21 @@ const GreedSlider = React.memo(
 
     useEffect(() => {
       setFirstDateOfWeek(getFirstDayOfWeek(selectedDate, isMondayFirst));
-    }, [isMondayFirst]);
+    }, [isMondayFirst, selectedDate, setFirstDateOfWeek]);
 
     const title =
       type === CALENDAR_TYPES.Year
         ? `${selectedYear}`
         : `${MONTH[selectedMonth]} ${selectedYear}`;
 
-    const handleGreedChange = useCallback(
+    const handleGridChange = useCallback(
       (direction: Direction) => () => {
         let nextMonth = selectedMonth;
         let nextYear = selectedYear;
-        let nextFirstDate = firstDateOfWeek;
+        const nextFirstDate = firstDateOfWeek;
 
         if (type === CALENDAR_TYPES.Month) {
-          if (direction === NEXT_GREED) {
+          if (direction === NEXT_GRID) {
             nextMonth = (selectedMonth + 1) % MONTH_COUNT;
             nextYear = selectedMonth === 11 ? selectedYear + 1 : selectedYear;
           } else {
@@ -49,7 +53,7 @@ const GreedSlider = React.memo(
         }
 
         if (type === CALENDAR_TYPES.Week) {
-          if (direction === NEXT_GREED) {
+          if (direction === NEXT_GRID) {
             nextFirstDate.setDate(nextFirstDate.getDate() + DAYS_IN_WEEK);
           } else {
             nextFirstDate.setDate(nextFirstDate.getDate() - DAYS_IN_WEEK);
@@ -61,7 +65,7 @@ const GreedSlider = React.memo(
         }
 
         if (type === CALENDAR_TYPES.Year) {
-          if (direction === NEXT_GREED) {
+          if (direction === NEXT_GRID) {
             nextYear++;
           } else {
             nextYear--;
@@ -78,16 +82,32 @@ const GreedSlider = React.memo(
           setSelectedYear(nextYear);
         }
       },
-      [firstDateOfWeek, selectedMonth, selectedYear, type],
+      [
+        firstDateOfWeek,
+        maxDate,
+        minDate,
+        selectedMonth,
+        selectedYear,
+        setFirstDateOfWeek,
+        setSelectedMonth,
+        setSelectedYear,
+        type,
+      ],
     );
 
     return (
       <SliderContainer>
-        <SliderButton onClick={handleGreedChange(PREV_GREED)}>
+        <SliderButton
+          data-testid="prev-button"
+          onClick={handleGridChange(PREV_GRID)}
+        >
           <Icon src={PrevGreedIcon} />
         </SliderButton>
-        <Title>{title}</Title>
-        <SliderButton onClick={handleGreedChange(NEXT_GREED)}>
+        <Title data-testid="grid-slider">{title}</Title>
+        <SliderButton
+          data-testid="next-button"
+          onClick={handleGridChange(NEXT_GRID)}
+        >
           <Icon src={NextGreedIcon} />
         </SliderButton>
       </SliderContainer>
@@ -95,4 +115,4 @@ const GreedSlider = React.memo(
   },
 );
 
-export default GreedSlider;
+export default GridSlider;

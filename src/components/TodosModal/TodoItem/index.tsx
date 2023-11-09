@@ -1,10 +1,12 @@
 import React, { useCallback } from "react";
 
 import { useCalendar } from "providers/CalendarProvider";
+
 import { getCache, saveCache } from "utils/dataCaching";
 
-import { TodoItemProps } from "./types";
 import { Todo } from "../types";
+
+import { TodoItemProps } from "./types";
 import { BUTTON_TEXT } from "./config";
 import { DeleteTaskButton, TodoText, TodoWrapper } from "./styled";
 
@@ -26,7 +28,7 @@ const TodoItem = React.memo(
 
       setTodos(updatedTodos);
       saveCache(TODO_CACHE_KEY, updatedTodos);
-    }, []);
+    }, [id, selectedDate, setTodos]);
 
     const handleDeleteTodo = useCallback(() => {
       const TODO_CACHE_KEY = selectedDate.toDateString();
@@ -36,14 +38,14 @@ const TodoItem = React.memo(
 
       setTodos(updatedTodos);
       saveCache(TODO_CACHE_KEY, updatedTodos);
-    }, []);
+    }, [id, selectedDate, setTodos]);
 
     return (
       <TodoWrapper>
         <input
+          checked={isDone}
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={isDone}
         />
         <TodoText $isDone={isDone}>{todoText}</TodoText>
         <DeleteTaskButton onClick={handleDeleteTodo}>

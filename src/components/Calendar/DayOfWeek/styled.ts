@@ -1,16 +1,16 @@
 import { DefaultTheme, styled } from "styled-components";
 
-import { Button } from "constants/styles/global";
 import { determineRadius } from "utils/borderRadiusCalculator";
 import {
   determineBackgroundColor,
   determineTextColor,
 } from "utils/colorCalculator";
 
+import { Button } from "constants/styles/global";
+
 import { DayOfWeekStyleProps } from "./types";
 
 const grayColor = ({ theme }: DefaultTheme) => theme.colors.gray;
-const acquaColor = ({ theme }: DefaultTheme) => theme.colors.acqua;
 const darkBlueHoverColor = ({ theme }: DefaultTheme) =>
   theme.colors.darkBlueHover;
 const spaceM = ({ theme }: DefaultTheme) => theme.spaces.m;

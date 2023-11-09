@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { WEEKDAYS } from "constants/calendarData";
+
 import Weekday from "./index";
 
 const meta: Meta<typeof Weekday> = {

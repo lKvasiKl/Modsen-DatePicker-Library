@@ -2,8 +2,8 @@ import React, { ChangeEvent } from "react";
 
 import { BaseInput } from "constants/styles/global";
 
-import { BUTTON_TEXT, PLACEHOLDER } from "./config";
 import { TodoInputProps } from "./types";
+import { BUTTON_TEXT, PLACEHOLDER } from "./config";
 import { Wrapper, InputButton, InputWrapper } from "./styled";
 
 const TodoInput = React.memo(
@@ -26,10 +26,10 @@ const TodoInput = React.memo(
       <Wrapper>
         <InputWrapper>
           <BaseInput
+            placeholder={PLACEHOLDER}
             type="text"
             value={todoText}
             onChange={handleInputChange}
-            placeholder={PLACEHOLDER}
             onKeyDown={handleInputKeyDown}
           />
         </InputWrapper>

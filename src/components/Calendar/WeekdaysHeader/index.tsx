@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-
-import { WEEKDAYS } from "constants/calendarData";
 import { Weekday } from "components";
 
+import { WEEKDAYS } from "constants/calendarData";
+import { Container } from "constants/styles/global";
+
 import { WeekdaysHeaderProps } from "./types";
-import { WeekdaysContainer } from "./styled";
 
 const WeekdaysHeader = React.memo(({ isMondayFirst }: WeekdaysHeaderProps) => {
   const WEEKDAYS_ARRAY = useMemo(() => {
@@ -14,11 +14,11 @@ const WeekdaysHeader = React.memo(({ isMondayFirst }: WeekdaysHeaderProps) => {
   }, [isMondayFirst]);
 
   return (
-    <WeekdaysContainer>
+    <Container>
       {WEEKDAYS_ARRAY.map((day) => (
         <Weekday key={day} weekday={day} />
       ))}
-    </WeekdaysContainer>
+    </Container>
   );
 });
 

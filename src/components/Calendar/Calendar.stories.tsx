@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { isHolidayDate, isWeekendDate } from "utils/calendarData";
+import { isHolidayDate, isWeekendDate } from "utils/calendarDateData";
+
+import { CALENDAR_TYPES } from "./types";
 
 import Calendar from "./index";
-import { CALENDAR_TYPES } from "./types";
 
 const CALENDAR_TYPE_LABELS = {
   [CALENDAR_TYPES.Week]: "Week",

@@ -1,14 +1,18 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
+import {
+  GridSlider,
+  DayOfWeekGrid,
+  WeekdaysHeader,
+  ClearButton,
+} from "components";
 
-import GreedSlider from "./GreedSlider";
-import DayOfWeekGrid from "./DayOfWeekGrid";
-import WeekdaysHeader from "./WeekdaysHeader";
-import ClearButton from "./ClearButton";
+import { useDate } from "providers/DateProvider";
+
+import ErrorBoundary from "components/ErrorBoundary";
+import ThemeWrapper from "components/ThemeWrapper";
 
 import { CALENDAR_TYPES, CalendarProps } from "./types";
 import { CalendarContainer } from "./styled";
-import { useDate } from "providers/DateProvider";
-import { getCalendarYearData } from "utils/calendarData";
 
 const Calendar = ({
   type = CALENDAR_TYPES.Month,
@@ -26,36 +30,38 @@ const Calendar = ({
     if (setRange) {
       setRange(undefined);
     }
-  }, []);
+  }, [setRange]);
 
   return (
-    <>
-      <CalendarContainer $isWithRange={isWithRange}>
-        <GreedSlider
-          type={type}
-          minDate={minDate}
-          maxDate={maxDate}
-          isMondayFirst={isMondayFirst}
-        />
-        {type === CALENDAR_TYPES.Week ||
-          (type === CALENDAR_TYPES.Month && (
-            <WeekdaysHeader isMondayFirst={isMondayFirst} />
-          ))}
-        <DayOfWeekGrid
-          type={type}
-          isMondayFirst={isMondayFirst}
-          isWeekendDate={isWeekendDate}
-          isWithRange={isWithRange}
-          minDate={minDate}
-          maxDate={maxDate}
-          isTodosEnabled={isTodosEnabled}
-          isHolidayDate={isHolidayDate}
-        />
-      </CalendarContainer>
-      {isWithRange && (
-        <ClearButton title="Clear" onClearClick={handlClearButtonClick} />
-      )}
-    </>
+    <ThemeWrapper>
+      <ErrorBoundary>
+        <CalendarContainer $isWithRange={isWithRange} data-testid="calendar">
+          <GridSlider
+            isMondayFirst={isMondayFirst}
+            maxDate={maxDate}
+            minDate={minDate}
+            type={type}
+          />
+          {type === CALENDAR_TYPES.Week ||
+            (type === CALENDAR_TYPES.Month && (
+              <WeekdaysHeader isMondayFirst={isMondayFirst} />
+            ))}
+          <DayOfWeekGrid
+            isHolidayDate={isHolidayDate}
+            isMondayFirst={isMondayFirst}
+            isTodosEnabled={isTodosEnabled}
+            isWeekendDate={isWeekendDate}
+            isWithRange={isWithRange}
+            maxDate={maxDate}
+            minDate={minDate}
+            type={type}
+          />
+        </CalendarContainer>
+        {isWithRange && (
+          <ClearButton title="Clear" onClearClick={handlClearButtonClick} />
+        )}
+      </ErrorBoundary>
+    </ThemeWrapper>
   );
 };
 

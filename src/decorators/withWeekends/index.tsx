@@ -1,7 +1,8 @@
 import { ComponentType } from "react";
 
 import { CalendarProps } from "components/Calendar/types";
-import { isWeekendDate } from "utils/calendarData";
+
+import { isWeekendDate } from "utils/calendarDateData";
 
 interface WithWeekendsProps extends Pick<CalendarProps, "isWeekendDate"> {}
 

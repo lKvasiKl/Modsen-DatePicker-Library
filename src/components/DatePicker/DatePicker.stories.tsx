@@ -1,14 +1,15 @@
+import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-
-import DatePicker from "./index";
 import CalendarService from "decorators";
 import withWeekendsDays from "decorators/withWeekends";
 import withMondayFirst from "decorators/withMondayFirst";
 import withTodo from "decorators/withTodos";
 import withRange from "decorators/withRange";
 
+import DatePicker from "./index";
+
 const calendarService = new CalendarService();
-const DefaultCalendar = calendarService.getCalendar();
+const DefaultCalendar = calendarService.getCalendar() as React.ComponentType;
 
 const meta: Meta<typeof DatePicker> = {
   title: "Component/DatePicker",
@@ -42,7 +43,7 @@ calendarService.addDecorator(withMondayFirst);
 calendarService.addDecorator(withWeekendsDays);
 calendarService.addDecorator(withWeekendsDays);
 calendarService.addDecorator(withTodo);
-const DecoratedCalendar = calendarService.getCalendar();
+const DecoratedCalendar = calendarService.getCalendar() as React.ComponentType;
 export const WithSomeDecorators: Story = {
   args: {
     label: "Date",
@@ -52,7 +53,7 @@ export const WithSomeDecorators: Story = {
 
 const newCalendarService = new CalendarService();
 newCalendarService.addDecorator(withRange);
-const RangeCalendar = newCalendarService.getCalendar();
+const RangeCalendar = newCalendarService.getCalendar() as React.ComponentType;
 export const RangePickerCalendar: Story = {
   args: {
     label: "Date",
