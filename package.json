@@ -6,7 +6,6 @@
   "repository": "https://github.com/lKvasiKl/Modsen-DatePicker-Library.git",
   "author": "Kirill Vasko <kirill.vasko.2003@gmail.com>",
   "license": "MIT",
-  "type": "module",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
