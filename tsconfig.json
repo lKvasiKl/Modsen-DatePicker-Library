@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": ["@testing-library/jest-dom", "jest-styled-components"],
-    "target": "es5",
+    "target": "es2020",
     "outDir": "lib",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -13,8 +13,8 @@
     "declarationDir": "lib",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
