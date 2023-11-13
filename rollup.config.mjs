@@ -8,6 +8,7 @@ import alias from "@rollup/plugin-alias";
 import path, { dirname } from "node:path";
 import { fileURLToPath } from "url";
 import { createRequire } from "node:module";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const requireFile = createRequire(import.meta.url);
