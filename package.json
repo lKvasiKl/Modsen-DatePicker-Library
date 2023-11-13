@@ -11,7 +11,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/ --fix",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/",
     "prettier": "prettier --write .js,.jsx,.ts,.tsx ./src/",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
