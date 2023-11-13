@@ -1,4 +1,3 @@
-import path, { dirname } from "node:path";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
@@ -6,11 +5,11 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import alias from "@rollup/plugin-alias";
 
+import path, { dirname } from "node:path";
 import { fileURLToPath } from "url";
+import { createRequire } from "node:module";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-import { createRequire } from "node:module";
 const requireFile = createRequire(import.meta.url);
 const packageJson = requireFile("./package.json");
 
