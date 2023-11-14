@@ -24,7 +24,8 @@
       "no-multiple-empty-lines": "warn",
       "react/react-in-jsx-scope": "off",
       "no-unused-vars": "off",
-      "import/no-anonymous-default-export":"off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "import/no-anonymous-default-export": "off",
       "react/display-name": "off",
       "react/jsx-uses-react": "off",
       "import/order": [
