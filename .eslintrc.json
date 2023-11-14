@@ -1,6 +1,6 @@
 {
     "env": {
-      "es2022": true
+      "commonjs": true
     },
     "extends": [
       "react-app",
