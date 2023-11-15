@@ -1,6 +1,5 @@
 import path from "node:path";
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import ESLintPlugin from "eslint-webpack-plugin";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -33,12 +32,6 @@ const config: StorybookConfig = {
         utils: path.resolve(__dirname, "../src/utils"),
       },
     };
-
-    config?.plugins?.push(
-      new ESLintPlugin({
-        extensions: ["js", "jsx", "ts", "tsx"],
-      }),
-    );
 
     return config;
   },
