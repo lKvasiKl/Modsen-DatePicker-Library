@@ -25,10 +25,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Configure Git
-        run: |
-          git config user.email "kirill.vasko.2003@gmail.com"
-          git config user.name "Kiryll"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node.js
