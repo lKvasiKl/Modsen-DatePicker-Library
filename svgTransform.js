@@ -1,9 +1,10 @@
-export function process() {
-  return {
-    code: `module.exports = {};`,
-  };
-}
-
-export function getCacheKey() {
-  return "svgTransform";
-}
+module.exports = {
+  process() {
+    return {
+      code: `module.exports = {};`,
+    };
+  },
+  getCacheKey() {
+    return "svgTransform";
+  },
+};
