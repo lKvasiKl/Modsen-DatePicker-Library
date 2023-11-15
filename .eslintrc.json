@@ -68,7 +68,6 @@
               "group": "internal",
               "position": "after"
             }
-         
         ],
         "pathGroupsExcludedImportTypes": ["internal"],
         "groups": ["external", "internal", "parent", "sibling", "index", "object", "type"]
