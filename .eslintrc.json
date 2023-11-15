@@ -5,7 +5,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "prettier"
@@ -15,7 +15,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "simple-import-sort", "import", "@next/eslint-plugin-next"],
+  "plugins": ["@typescript-eslint", "react", "simple-import-sort", "import"],
     "rules": {
       "eol-last": ["warn", "always"],
       "prefer-const": "warn",
@@ -80,5 +80,10 @@
         "noSortAlphabetically": false
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
