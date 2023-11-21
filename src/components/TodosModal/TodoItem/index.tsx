@@ -10,50 +10,46 @@ import { TodoItemProps } from "./types";
 import { BUTTON_TEXT } from "./config";
 import { DeleteTaskButton, TodoText, TodoWrapper } from "./styled";
 
-const TodoItem = React.memo(
-  ({ id, todoText, isDone, setTodos }: TodoItemProps) => {
-    const { selectedDate } = useCalendar();
+const TodoItem = React.memo((props: TodoItemProps) => {
+  const { id, todoText, isDone, setTodos } = props;
 
-    const handleCheckboxChange = useCallback(() => {
-      const TODO_CACHE_KEY = selectedDate.toDateString();
-      const todos = getCache<Todo[]>(TODO_CACHE_KEY);
+  const { selectedDate } = useCalendar();
 
-      const updatedTodos = todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isDone: !todo.isDone };
-        }
+  const handleCheckboxChange = useCallback(() => {
+    const TODO_CACHE_KEY = selectedDate.toDateString();
+    const todos = getCache<Todo[]>(TODO_CACHE_KEY);
 
-        return todo;
-      });
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: !todo.isDone };
+      }
 
-      setTodos(updatedTodos);
-      saveCache(TODO_CACHE_KEY, updatedTodos);
-    }, [id, selectedDate, setTodos]);
+      return todo;
+    });
 
-    const handleDeleteTodo = useCallback(() => {
-      const TODO_CACHE_KEY = selectedDate.toDateString();
-      const todos = getCache<Todo[]>(TODO_CACHE_KEY);
+    setTodos(updatedTodos);
+    saveCache(TODO_CACHE_KEY, updatedTodos);
+  }, [id, selectedDate, setTodos]);
 
-      const updatedTodos = todos.filter((todo) => todo.id !== id);
+  const handleDeleteTodo = useCallback(() => {
+    const TODO_CACHE_KEY = selectedDate.toDateString();
+    const todos = getCache<Todo[]>(TODO_CACHE_KEY);
 
-      setTodos(updatedTodos);
-      saveCache(TODO_CACHE_KEY, updatedTodos);
-    }, [id, selectedDate, setTodos]);
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
 
-    return (
-      <TodoWrapper>
-        <input
-          checked={isDone}
-          type="checkbox"
-          onChange={handleCheckboxChange}
-        />
-        <TodoText $isDone={isDone}>{todoText}</TodoText>
-        <DeleteTaskButton onClick={handleDeleteTodo}>
-          {BUTTON_TEXT}
-        </DeleteTaskButton>
-      </TodoWrapper>
-    );
-  },
-);
+    setTodos(updatedTodos);
+    saveCache(TODO_CACHE_KEY, updatedTodos);
+  }, [id, selectedDate, setTodos]);
+
+  return (
+    <TodoWrapper>
+      <input checked={isDone} type="checkbox" onChange={handleCheckboxChange} />
+      <TodoText $isDone={isDone}>{todoText}</TodoText>
+      <DeleteTaskButton onClick={handleDeleteTodo}>
+        {BUTTON_TEXT}
+      </DeleteTaskButton>
+    </TodoWrapper>
+  );
+});
 
 export default TodoItem;

@@ -22,18 +22,11 @@ export const isWeekendDate = (date: Date): boolean => {
 };
 
 export const isHolidayDate = (date: Date): boolean => {
-  for (const holiday of HOLIDAYS) {
-    const holidayDate = holiday.date;
-
-    if (
-      date.getDate() === holidayDate.getDate() &&
-      date.getMonth() === holidayDate.getMonth()
-    ) {
-      return true;
-    }
-  }
-
-  return false;
+  return HOLIDAYS.some(
+    (holiday) =>
+      date.getDate() === holiday.date.getDate() &&
+      date.getMonth() === holiday.date.getMonth(),
+  );
 };
 
 export const formatDate = (date: Date): string => {

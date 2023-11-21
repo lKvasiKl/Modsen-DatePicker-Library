@@ -23,29 +23,33 @@ import {
   YearCalendarContainer,
 } from "./styled";
 
-const DayOfWeekGrid = ({
-  type,
-  isMondayFirst,
-  isWeekendDate,
-  isWithRange,
-  minDate,
-  maxDate,
-  isTodosEnabled,
-  isHolidayDate,
-}: DayOfWeekGridProps) => {
+const { Week, Month, Year } = CALENDAR_TYPES;
+
+const DayOfWeekGrid = (props: DayOfWeekGridProps) => {
+  const {
+    type,
+    isMondayFirst,
+    isWeekendDate,
+    isWithRange,
+    minDate,
+    maxDate,
+    isTodosEnabled,
+    isHolidayDate,
+  } = props;
+
   const { firstDateOfWeek, selectedDate, selectedMonth, selectedYear } =
     useCalendar();
 
   const GREED_DATA = useMemo(() => {
-    if (type === CALENDAR_TYPES.Week) {
+    if (type === Week) {
       return getCalendarWeekData(firstDateOfWeek);
-    } else if (type === CALENDAR_TYPES.Month) {
+    } else if (type === Month) {
       return getCalendarMonthData(selectedMonth, selectedYear, isMondayFirst);
     }
   }, [firstDateOfWeek, selectedMonth, selectedYear, isMondayFirst, type]);
 
   const YEAR_GREED_DATA = useMemo(() => {
-    if (type === CALENDAR_TYPES.Year) {
+    if (type === Year) {
       return getCalendarYearData(selectedYear, isMondayFirst);
     }
   }, [type, selectedYear, isMondayFirst]);
@@ -72,7 +76,7 @@ const DayOfWeekGrid = ({
           })}
         </DayOfWeekGridContainer>
       )}
-      {type === CALENDAR_TYPES.Year && YEAR_GREED_DATA && (
+      {type === Year && YEAR_GREED_DATA && (
         <YearCalendarContainer data-testid="day-of-week-grid-year">
           {YEAR_GREED_DATA.map((month) => {
             const currentMonth = month[DAYS_IN_WEEK].getMonth();

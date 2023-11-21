@@ -1,16 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import ClearButton from "./index";
+import Button from "./index";
 
-const meta: Meta<typeof ClearButton> = {
-  title: "Component/ClearButton",
-  component: ClearButton,
+const meta: Meta<typeof Button> = {
+  title: "Component/Button",
+  component: Button,
   argTypes: {
     title: {
       name: "Button title",
     },
-    onClearClick: {
-      name: "onClearClick",
+    onButtonClick: {
+      name: "onButtonClick",
       type: "function",
       description: "Function to call when user clicked on button",
     },
@@ -21,7 +21,7 @@ const meta: Meta<typeof ClearButton> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ClearButton>;
+type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   args: {

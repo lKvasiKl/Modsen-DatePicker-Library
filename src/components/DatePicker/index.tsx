@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { DatePickerInput } from "components";
+import { ICONS } from "assets";
 
 import { useCalendar } from "providers/CalendarProvider";
 import { useDate } from "providers/DateProvider";
 
+import useClickOutside from "hooks/useClickOutside";
+
 import { formatDate } from "utils/calendarDateData";
 
 import { Icon } from "constants/styles/global";
-
-import CaledarIcon from "assets/icons/calendar.svg";
-import ClearIcon from "assets/icons/clear.svg";
 
 import { DatePickerPros } from "./types";
 import {
@@ -18,6 +18,7 @@ import {
   Error,
   DatePickerContainer,
   CalendarWrapper,
+  InfoContainer,
 } from "./styled";
 
 const DatePicker = React.memo(
@@ -25,6 +26,14 @@ const DatePicker = React.memo(
     const [inputValue, setInputValue] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
+
+    const calendarRef = useRef<HTMLDivElement | null>(null);
+
+    useClickOutside(calendarRef, () => {
+      setError("");
+      setInputValue(formatDate(selectedDate));
+      setIsCalendarOpen(false);
+    });
 
     const { selectedDate } = useCalendar();
     const { setRange } = useDate();
@@ -34,11 +43,13 @@ const DatePicker = React.memo(
     }, [selectedDate]);
 
     const handleCalendarIconClick = useCallback(() => {
+      setError("");
       setInputValue(formatDate(selectedDate));
-      setIsCalendarOpen((prevState) => !prevState);
-    }, [selectedDate]);
+      setIsCalendarOpen((prevValue) => !prevValue);
+    }, [selectedDate, setIsCalendarOpen]);
 
     const handleClearInput = useCallback(() => {
+      setError("");
       setInputValue("");
       setRange({ rangeStart: undefined, rangeEnd: undefined });
       setIsCalendarOpen(false);
@@ -46,12 +57,14 @@ const DatePicker = React.memo(
 
     return (
       <DatePickerContainer>
-        <Label>{label}</Label>
-        {error && <Error>{error}</Error>}
+        <InfoContainer>
+          <Label>{label}</Label>
+          {error && <Error>{error}</Error>}
+        </InfoContainer>
         <DatePickerInputWrapper>
           <Icon
             data-testid="calendar-icon-button"
-            src={CaledarIcon}
+            src={ICONS.calendar}
             onClick={handleCalendarIconClick}
           />
           <DatePickerInput
@@ -63,12 +76,14 @@ const DatePicker = React.memo(
           {inputValue && (
             <Icon
               data-testid="clear-icon-button"
-              src={ClearIcon}
+              src={ICONS.clear}
               onClick={handleClearInput}
             />
           )}
         </DatePickerInputWrapper>
-        <CalendarWrapper>{isCalendarOpen && <Calendar />}</CalendarWrapper>
+        <CalendarWrapper ref={calendarRef}>
+          {isCalendarOpen && <Calendar />}
+        </CalendarWrapper>
       </DatePickerContainer>
     );
   },

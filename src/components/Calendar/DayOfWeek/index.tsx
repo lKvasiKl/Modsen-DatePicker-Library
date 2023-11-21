@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 
 import { useCalendar } from "providers/CalendarProvider";
 import { useDate } from "providers/DateProvider";
 
-import TodosModal from "components/TodosModal";
-
-import usePortal from "hooks/usePortal";
+import { getCache } from "utils/dataCaching";
 
 import { RANGE_STATE } from "constants/calendarData";
 
 import { DayOfWeekProps } from "./types";
-import { DayOfWeekButton } from "./styled";
+import { DayOfWeekButton, Dot } from "./styled";
 
-const DayofWeek = React.memo(
-  ({
+const { Start, End, Between } = RANGE_STATE;
+
+const DayofWeek = React.memo((props: DayOfWeekProps) => {
+  const {
     dayOfWeek,
     isSelected = false,
     isDisabled = false,
@@ -23,100 +23,86 @@ const DayofWeek = React.memo(
     maxDate = undefined,
     isTodosEnabled = false,
     isHoliday = false,
-  }: DayOfWeekProps) => {
-    const [isTodoModalOpen, setIsTodoModalOpen] = useState<boolean>(false);
+  } = props;
 
-    const { setSelectedDate, setSelectedMonth, setSelectedYear } =
-      useCalendar();
-    const { range, setRange } = useDate();
-    const todosPortal = usePortal();
+  const { range, setRange } = useDate();
+  const { setSelectedDate, setSelectedMonth, setSelectedYear } = useCalendar();
 
-    const day = dayOfWeek.getDate();
-    const month = dayOfWeek.getMonth();
-    const year = dayOfWeek.getFullYear();
+  const day = dayOfWeek.getDate();
+  const month = dayOfWeek.getMonth();
+  const year = dayOfWeek.getFullYear();
 
-    const handleSelectDate = useCallback(() => {
-      const canChangeMonth =
-        (!minDate || dayOfWeek >= minDate) &&
-        (!maxDate || dayOfWeek <= maxDate);
+  const handleSelectDate = useCallback(() => {
+    const canChangeMonth =
+      (!minDate || dayOfWeek >= minDate) && (!maxDate || dayOfWeek <= maxDate);
 
-      if (canChangeMonth) {
-        setSelectedDate(dayOfWeek);
-        setSelectedMonth(month);
-        setSelectedYear(year);
+    if (canChangeMonth) {
+      setSelectedDate(dayOfWeek);
+      setSelectedMonth(month);
+      setSelectedYear(year);
 
-        if (isWithRange && (!range || (!range.rangeStart && !range.rangeEnd))) {
-          setRange({ rangeStart: dayOfWeek, rangeEnd: undefined });
-        } else {
-          const [start, end] =
-            dayOfWeek < range!.rangeStart!
-              ? [dayOfWeek, range!.rangeStart]
-              : [range!.rangeStart, dayOfWeek];
-          setRange({ rangeStart: start, rangeEnd: end });
-        }
+      if (isWithRange && (!range || (!range.rangeStart && !range.rangeEnd))) {
+        setRange({ rangeStart: dayOfWeek, rangeEnd: undefined });
+      } else {
+        const [start, end] =
+          dayOfWeek < range!.rangeStart!
+            ? [dayOfWeek, range!.rangeStart]
+            : [range!.rangeStart, dayOfWeek];
+        setRange({ rangeStart: start, rangeEnd: end });
+      }
+    }
+  }, [
+    minDate,
+    dayOfWeek,
+    maxDate,
+    setSelectedDate,
+    setSelectedMonth,
+    month,
+    setSelectedYear,
+    year,
+    isWithRange,
+    range,
+    setRange,
+  ]);
+
+  const getRangeState = (date: Date) => {
+    if (range && range.rangeStart && range.rangeEnd) {
+      const isStartDate = date.getTime() === range.rangeStart.getTime();
+      const isEndDate = date.getTime() === range.rangeEnd.getTime();
+      const isBetween = date > range.rangeStart && date < range.rangeEnd;
+
+      if (isStartDate) {
+        return Start;
       }
 
-      if (isTodosEnabled) {
-        setIsTodoModalOpen(true);
+      if (isEndDate) {
+        return End;
       }
-    }, [
-      minDate,
-      dayOfWeek,
-      maxDate,
-      isTodosEnabled,
-      setSelectedDate,
-      setSelectedMonth,
-      month,
-      setSelectedYear,
-      year,
-      isWithRange,
-      range,
-      setRange,
-    ]);
 
-    const handleCloseTodoModal = useCallback(() => {
-      setIsTodoModalOpen(false);
-    }, []);
-
-    const getRangeState = (date: Date) => {
-      if (range && range.rangeStart && range.rangeEnd) {
-        const isStartDate = date.getTime() === range.rangeStart.getTime();
-        const isEndDate = date.getTime() === range.rangeEnd.getTime();
-        const isBetween = date > range.rangeStart && date < range.rangeEnd;
-
-        if (isStartDate) {
-          return RANGE_STATE.Start;
-        }
-
-        if (isEndDate) {
-          return RANGE_STATE.End;
-        }
-
-        if (isBetween) {
-          return RANGE_STATE.Between;
-        }
+      if (isBetween) {
+        return Between;
       }
-    };
+    }
+  };
 
-    return (
-      <>
-        <DayOfWeekButton
-          $isDisabled={isDisabled}
-          $isHoliday={isHoliday}
-          $isSelected={isSelected}
-          $isWeekend={isWeekend}
-          $rangeState={getRangeState(dayOfWeek)}
-          data-testid="day-of-week"
-          onClick={handleSelectDate}
-        >
-          {day}
-        </DayOfWeekButton>
-        {isTodosEnabled &&
-          isTodoModalOpen &&
-          todosPortal(<TodosModal onClose={handleCloseTodoModal} />)}
-      </>
-    );
-  },
-);
+  const todos = getCache(dayOfWeek.toDateString());
+
+  return (
+    <>
+      <DayOfWeekButton
+        $isDisabled={isDisabled}
+        $isHoliday={isHoliday}
+        $isSelected={isSelected}
+        $isWeekend={isWeekend}
+        $rangeState={getRangeState(dayOfWeek)}
+        data-testid="day-of-week"
+        onClick={handleSelectDate}
+      >
+        {day}
+        {isTodosEnabled && todos.length !== 0 && <Dot />}
+      </DayOfWeekButton>
+    </>
+  );
+});
 
 export default DayofWeek;

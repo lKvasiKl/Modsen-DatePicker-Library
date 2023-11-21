@@ -33,5 +33,5 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: yarn install
-      - name: Build and deploy
-        run: yarn deploy
+      - name: Build
+        run: yarn build

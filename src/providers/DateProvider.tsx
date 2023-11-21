@@ -1,7 +1,11 @@
 import React, { createContext, useState, useContext } from "react";
-import { Range } from "decorators/withRange/types";
 
-import { ProviderProps } from "./type";
+import {
+  ProviderProps,
+  RangeValues,
+  DispatchDate,
+  DispatchRangeValues,
+} from "./type";
 
 const defaultMinDate = new Date(2022, 0, 1);
 const defaultMaxDate = new Date(2035, 11, 0);
@@ -9,10 +13,10 @@ const defaultMaxDate = new Date(2035, 11, 0);
 export const DateContext = createContext<{
   minDate: Date;
   maxDate: Date;
-  range: Range | undefined;
-  setMinDate: React.Dispatch<React.SetStateAction<Date>>;
-  setMaxDate: React.Dispatch<React.SetStateAction<Date>>;
-  setRange: React.Dispatch<React.SetStateAction<Range | undefined>>;
+  range: RangeValues;
+  setMinDate: DispatchDate;
+  setMaxDate: DispatchDate;
+  setRange: DispatchRangeValues;
 }>({
   minDate: defaultMinDate,
   maxDate: defaultMaxDate,
@@ -25,7 +29,7 @@ export const DateContext = createContext<{
 const DateProvider = ({ children }: ProviderProps) => {
   const [minDate, setMinDate] = useState(defaultMinDate);
   const [maxDate, setMaxDate] = useState(defaultMaxDate);
-  const [range, setRange] = useState<Range | undefined>({
+  const [range, setRange] = useState<RangeValues>({
     rangeStart: undefined,
     rangeEnd: undefined,
   });

@@ -1,12 +1,15 @@
 export type Colors = Record<string, string>;
 
+type StringKeyStringValue = Record<string, string>;
+type StringKeyNumberValue = Record<string, number>;
+
 export interface Fonts {
-  fontFamily: Record<string, string>;
-  fontSize: Record<string, number>;
-  fontWeight: Record<string, number>;
+  fontFamily: StringKeyStringValue;
+  fontSize: StringKeyNumberValue;
+  fontWeight: StringKeyNumberValue;
 }
 
-export type Spaces = Record<string, number>;
+export type Spaces = StringKeyNumberValue;
 
 export interface Theme {
   colors: Colors;
@@ -14,4 +17,4 @@ export interface Theme {
   spaces: Spaces;
 }
 
-export type Weekday = Record<string, string>;
+export type Weekday = StringKeyStringValue;

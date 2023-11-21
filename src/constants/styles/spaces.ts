@@ -1,7 +1,7 @@
 import { Spaces } from "constants/types";
 
 export const SPACES: Spaces = {
-  l: 15,
-  m: 10,
-  s: 5,
+  l: 16,
+  m: 8,
+  s: 4,
 };

@@ -54,14 +54,8 @@ const TodosModal = React.memo(({ onClose }: TodosModalProps) => {
     }
   }, [todoText, todos, selectedDate]);
 
-  const TODO_ITEMS = todos.map((todo) => (
-    <TodoItem
-      id={todo.id}
-      isDone={todo.isDone}
-      key={todo.id}
-      setTodos={setTodos}
-      todoText={todo.todoText}
-    />
+  const TODO_ITEMS = todos.map(({ id, ...todo }) => (
+    <TodoItem id={id} key={id} setTodos={setTodos} {...todo} />
   ));
 
   return (

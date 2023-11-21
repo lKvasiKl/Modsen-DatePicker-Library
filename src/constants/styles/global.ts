@@ -21,6 +21,7 @@ export const Button = styled.button`
   ${flexColumn}
   ${contentCenter}
   ${baseText}
+  
   background: transparent;
   border: none;
   cursor: pointer;
@@ -29,6 +30,7 @@ export const Button = styled.button`
 export const Container = styled.div`
   ${displayFlex}
   ${contentCenter}
+  
   cursor: default;
 `;
 
@@ -40,12 +42,14 @@ export const Icon = styled.img`
 
 export const Title = styled.h1`
   ${baseText}
+
   font-size:  ${FONTS.fontSize.xl}px;
   font-weight: ${FONTS.fontWeight.l};
 `;
 
 export const BaseInput = styled.input`
   ${baseText}
+
   margin: ${SPACES.m}px;
   font-size: ${FONTS.fontSize.l}px;
   font-weight: ${FONTS.fontWeight.s};

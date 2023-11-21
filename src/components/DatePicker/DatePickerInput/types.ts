@@ -1,8 +1,11 @@
 import React from "react";
 
+type DispatchString = React.Dispatch<React.SetStateAction<string>>;
+type DispatchBoolean = React.Dispatch<React.SetStateAction<boolean>>;
+
 export interface DatePickerInputProps {
   inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  setError: React.Dispatch<React.SetStateAction<string>>;
-  setIsCalendarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setInputValue: DispatchString;
+  setError: DispatchString;
+  setIsCalendarOpen: DispatchBoolean;
 }

@@ -8,6 +8,7 @@ export const displayFlex = css`
 
 export const flexColumn = css`
   ${displayFlex}
+
   flex-direction: column;
 `;
 

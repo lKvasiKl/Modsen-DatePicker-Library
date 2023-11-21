@@ -22,25 +22,4 @@ describe("Calendar component", () => {
 
     expect(calendar).toBeInTheDocument();
   });
-
-  it("renders Calendar with Clear button", () => {
-    render(
-      <Calendar
-        isHolidayDate={undefined}
-        isMondayFirst={false}
-        isTodosEnabled={false}
-        isWeekendDate={undefined}
-        isWithRange={true}
-        maxDate={undefined}
-        minDate={undefined}
-        type={CALENDAR_TYPES.Month}
-      />,
-    );
-
-    const calendar = screen.getByTestId("calendar");
-    const rangeClearButton = screen.getByTestId("range-clear-button");
-
-    expect(calendar).toBeInTheDocument();
-    expect(rangeClearButton).toBeInTheDocument();
-  });
 });

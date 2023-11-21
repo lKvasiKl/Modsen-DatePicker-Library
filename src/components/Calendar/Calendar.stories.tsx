@@ -1,4 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
+import CalendarService from "decorators";
+import withTodo from "decorators/withTodos";
+import withMondayFirst from "decorators/withMondayFirst";
+import withWeekendsDays from "decorators/withWeekends";
 
 import { isHolidayDate, isWeekendDate } from "utils/calendarDateData";
 
@@ -37,11 +41,9 @@ const meta: Meta<typeof Calendar> = {
     },
     minDate: {
       name: "Min calendar Date",
-      control: "none",
     },
     maxDate: {
       name: "Max calendar Date",
-      control: "none",
     },
     isWithRange: { name: "Is with range" },
     isTodosEnabled: {
@@ -87,9 +89,12 @@ export const WithRange: Story = {
   },
 };
 
+const calendarService = new CalendarService();
+calendarService.addDecorator(withTodo);
+calendarService.addDecorator(withMondayFirst);
+calendarService.addDecorator(withWeekendsDays);
+const DecoratedCalendar = calendarService.getCalendar();
+
 export const WithTodos: Story = {
-  args: {
-    isWeekendDate: isWeekendDate,
-    isTodosEnabled: true,
-  },
+  render: () => <DecoratedCalendar type={CALENDAR_TYPES.Month} />,
 };

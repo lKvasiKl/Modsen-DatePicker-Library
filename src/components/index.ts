@@ -1,6 +1,6 @@
 export { default as ThemeWrapper } from "./ThemeWrapper";
 export { default as Calendar } from "./Calendar";
-export { default as ClearButton } from "./Calendar/ClearButton";
+export { default as Button } from "./Calendar/Button";
 export { default as DayOfWeek } from "./Calendar/DayOfWeek";
 export { default as DayOfWeekGrid } from "./Calendar/DayOfWeekGrid";
 export { default as GridSlider } from "./Calendar/GridSlider";

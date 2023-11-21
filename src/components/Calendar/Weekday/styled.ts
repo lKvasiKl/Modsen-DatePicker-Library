@@ -10,6 +10,7 @@ const fontWeightL = ({ theme }: DefaultTheme) => theme.fonts.fontWeight.l;
 
 export const WeekdayContainer = styled.div`
   ${baseText}
+
   font-size: ${fontSizeM}px;
   font-weight: ${fontWeightL};
   background-color: ${whiteColor};

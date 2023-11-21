@@ -1,14 +1,16 @@
 import { RANGE_STATE } from "constants/calendarData";
 
-export const determineRadius = ($rangeState: RANGE_STATE | undefined) => {
+const { Start, Between, End } = RANGE_STATE;
+
+export const determineRadius = ($rangeState?: RANGE_STATE) => {
   switch ($rangeState) {
-    case RANGE_STATE.Start: {
+    case Start: {
       return "8px 0 0 8px";
     }
-    case RANGE_STATE.Between: {
+    case Between: {
       return "0";
     }
-    case RANGE_STATE.End: {
+    case End: {
       return "0 8px 8px 0";
     }
     default: {

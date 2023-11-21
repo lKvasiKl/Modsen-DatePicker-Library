@@ -20,6 +20,7 @@ export const TodoWrapper = styled(Container)`
 
 export const TodoText = styled.p<TodoItemStyledProps>`
   ${baseText}
+
   text-decoration: ${({ $isDone }) => ($isDone ? "line-through" : "none")};
   width: 100%;
   max-width: 433px;

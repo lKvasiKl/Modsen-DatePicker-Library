@@ -1,8 +1,8 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 import { getFirstDayOfWeek } from "utils/calendarDateData";
 
-import { ProviderProps } from "./type";
+import { DispatchDate, DispatchNumber, ProviderProps } from "./type";
 
 const date = new Date();
 const month = date.getMonth();
@@ -14,10 +14,10 @@ export const CalendarContext = createContext<{
   selectedDate: Date;
   selectedMonth: number;
   selectedYear: number;
-  setFirstDateOfWeek: React.Dispatch<React.SetStateAction<Date>>;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
-  setSelectedMonth: React.Dispatch<React.SetStateAction<number>>;
-  setSelectedYear: React.Dispatch<React.SetStateAction<number>>;
+  setFirstDateOfWeek: DispatchDate;
+  setSelectedDate: DispatchDate;
+  setSelectedMonth: DispatchNumber;
+  setSelectedYear: DispatchNumber;
 }>({
   firstDateOfWeek: firstDayOfWeek,
   selectedDate: date,

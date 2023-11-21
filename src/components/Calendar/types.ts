@@ -10,7 +10,8 @@ export interface CalendarProps {
 }
 
 export interface CalendarStyledProps {
-  $isWithRange?: boolean;
+  $isRangeExist?: boolean;
+  $isTodosEnabled?: boolean;
 }
 
 export enum CALENDAR_TYPES {

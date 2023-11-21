@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
+import { ICONS } from "assets";
 
 import useClickOutside from "hooks/useClickOutside";
 
 import { Icon } from "constants/styles/global";
-
-import CloseIcon from "assets/icons/close.svg";
 
 import { ModalProps } from "./types";
 import { CloseButton, ModalWindow, ModalContainer } from "./styled";
@@ -25,7 +24,7 @@ const Modal = React.memo(({ children, onClose }: ModalProps) => {
           data-testid="modal-close-button"
           onClick={handleCloseButtonClick}
         >
-          <Icon src={CloseIcon} />
+          <Icon src={ICONS.close} />
         </CloseButton>
         {children}
       </ModalWindow>

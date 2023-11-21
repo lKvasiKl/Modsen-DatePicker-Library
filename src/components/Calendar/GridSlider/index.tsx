@@ -1,118 +1,126 @@
 import React, { useCallback, useEffect } from "react";
+import { ICONS } from "assets";
 
 import { useCalendar } from "providers/CalendarProvider";
 
 import { getFirstDayOfWeek } from "utils/calendarDateData";
 
 import { Icon } from "constants/styles/global";
-import { DAYS_IN_WEEK, MONTH, MONTH_COUNT } from "constants/calendarData";
-
-import NextGreedIcon from "assets/icons/next.svg";
-import PrevGreedIcon from "assets/icons/prev.svg";
+import {
+  DAYS_IN_WEEK,
+  MONTH,
+  MONTH_COUNT,
+  DATE_UNIT,
+} from "constants/calendarData";
 
 import { CALENDAR_TYPES } from "../types";
 
 import { Direction, GridSliderProps, PREV_GRID, NEXT_GRID } from "./types";
 import { SliderButton, SliderContainer, Title } from "./styled";
 
-const GridSlider = React.memo(
-  ({ type, minDate, maxDate, isMondayFirst }: GridSliderProps) => {
-    const {
-      selectedDate,
+const { Week, Month, Year } = CALENDAR_TYPES;
+
+const GridSlider = React.memo((props: GridSliderProps) => {
+  const { type, minDate, maxDate, isMondayFirst } = props;
+
+  const {
+    selectedDate,
+    firstDateOfWeek,
+    selectedMonth,
+    selectedYear,
+    setFirstDateOfWeek,
+    setSelectedMonth,
+    setSelectedYear,
+  } = useCalendar();
+
+  useEffect(() => {
+    setFirstDateOfWeek(getFirstDayOfWeek(selectedDate, isMondayFirst));
+  }, [isMondayFirst, selectedDate, setFirstDateOfWeek]);
+
+  const title =
+    type === Year
+      ? `${selectedYear}`
+      : `${MONTH[selectedMonth]} ${selectedYear}`;
+
+  const handleGridChange = useCallback(
+    (direction: Direction) => () => {
+      let nextMonth = selectedMonth;
+      let nextYear = selectedYear;
+      const nextFirstDate = firstDateOfWeek;
+
+      if (type === Month) {
+        if (direction === NEXT_GRID) {
+          nextMonth = (selectedMonth + DATE_UNIT) % MONTH_COUNT;
+          nextYear =
+            selectedMonth === MONTH_COUNT - DATE_UNIT
+              ? selectedYear + DATE_UNIT
+              : selectedYear;
+        } else {
+          nextMonth = (selectedMonth - DATE_UNIT + MONTH_COUNT) % MONTH_COUNT;
+          nextYear =
+            selectedMonth === 0 ? selectedYear - DATE_UNIT : selectedYear;
+        }
+      }
+
+      if (type === Week) {
+        if (direction === NEXT_GRID) {
+          nextFirstDate.setDate(nextFirstDate.getDate() + DAYS_IN_WEEK);
+        } else {
+          nextFirstDate.setDate(nextFirstDate.getDate() - DAYS_IN_WEEK);
+        }
+
+        nextMonth = firstDateOfWeek.getMonth();
+        nextYear = firstDateOfWeek.getFullYear();
+        setFirstDateOfWeek(new Date(nextFirstDate));
+      }
+
+      if (type === Year) {
+        if (direction === NEXT_GRID) {
+          nextYear++;
+        } else {
+          nextYear--;
+        }
+      }
+
+      const nextDate = new Date(nextYear, nextMonth);
+      const canChangeMonth =
+        (!minDate || nextDate >= minDate) && (!maxDate || nextDate <= maxDate);
+
+      if (canChangeMonth) {
+        setSelectedMonth(nextMonth);
+        setSelectedYear(nextYear);
+      }
+    },
+    [
       firstDateOfWeek,
+      maxDate,
+      minDate,
       selectedMonth,
       selectedYear,
       setFirstDateOfWeek,
       setSelectedMonth,
       setSelectedYear,
-    } = useCalendar();
+      type,
+    ],
+  );
 
-    useEffect(() => {
-      setFirstDateOfWeek(getFirstDayOfWeek(selectedDate, isMondayFirst));
-    }, [isMondayFirst, selectedDate, setFirstDateOfWeek]);
-
-    const title =
-      type === CALENDAR_TYPES.Year
-        ? `${selectedYear}`
-        : `${MONTH[selectedMonth]} ${selectedYear}`;
-
-    const handleGridChange = useCallback(
-      (direction: Direction) => () => {
-        let nextMonth = selectedMonth;
-        let nextYear = selectedYear;
-        const nextFirstDate = firstDateOfWeek;
-
-        if (type === CALENDAR_TYPES.Month) {
-          if (direction === NEXT_GRID) {
-            nextMonth = (selectedMonth + 1) % MONTH_COUNT;
-            nextYear = selectedMonth === 11 ? selectedYear + 1 : selectedYear;
-          } else {
-            nextMonth = (selectedMonth - 1 + MONTH_COUNT) % MONTH_COUNT;
-            nextYear = selectedMonth === 0 ? selectedYear - 1 : selectedYear;
-          }
-        }
-
-        if (type === CALENDAR_TYPES.Week) {
-          if (direction === NEXT_GRID) {
-            nextFirstDate.setDate(nextFirstDate.getDate() + DAYS_IN_WEEK);
-          } else {
-            nextFirstDate.setDate(nextFirstDate.getDate() - DAYS_IN_WEEK);
-          }
-
-          nextMonth = firstDateOfWeek.getMonth();
-          nextYear = firstDateOfWeek.getFullYear();
-          setFirstDateOfWeek(new Date(nextFirstDate));
-        }
-
-        if (type === CALENDAR_TYPES.Year) {
-          if (direction === NEXT_GRID) {
-            nextYear++;
-          } else {
-            nextYear--;
-          }
-        }
-
-        const nextDate = new Date(nextYear, nextMonth);
-        const canChangeMonth =
-          (!minDate || nextDate >= minDate) &&
-          (!maxDate || nextDate <= maxDate);
-
-        if (canChangeMonth) {
-          setSelectedMonth(nextMonth);
-          setSelectedYear(nextYear);
-        }
-      },
-      [
-        firstDateOfWeek,
-        maxDate,
-        minDate,
-        selectedMonth,
-        selectedYear,
-        setFirstDateOfWeek,
-        setSelectedMonth,
-        setSelectedYear,
-        type,
-      ],
-    );
-
-    return (
-      <SliderContainer>
-        <SliderButton
-          data-testid="prev-button"
-          onClick={handleGridChange(PREV_GRID)}
-        >
-          <Icon src={PrevGreedIcon} />
-        </SliderButton>
-        <Title data-testid="grid-slider">{title}</Title>
-        <SliderButton
-          data-testid="next-button"
-          onClick={handleGridChange(NEXT_GRID)}
-        >
-          <Icon src={NextGreedIcon} />
-        </SliderButton>
-      </SliderContainer>
-    );
-  },
-);
+  return (
+    <SliderContainer>
+      <SliderButton
+        data-testid="prev-button"
+        onClick={handleGridChange(PREV_GRID)}
+      >
+        <Icon src={ICONS.prevGrid} />
+      </SliderButton>
+      <Title data-testid="grid-slider">{title}</Title>
+      <SliderButton
+        data-testid="next-button"
+        onClick={handleGridChange(NEXT_GRID)}
+      >
+        <Icon src={ICONS.nextGrid} />
+      </SliderButton>
+    </SliderContainer>
+  );
+});
 
 export default GridSlider;

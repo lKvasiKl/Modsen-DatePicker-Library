@@ -1,15 +1,19 @@
 import { RANGE_STATE } from "constants/calendarData";
 import { COLORS } from "constants/styles";
 
+const { Start, Between, End } = RANGE_STATE;
+const { darkBlue, blue, lightBlue, white, orange, lightGray, red, black } =
+  COLORS;
+
 export const determineBackgroundColor = (
   $isSelected: boolean,
   $rangeState: RANGE_STATE | undefined,
 ): string => {
-  if ($isSelected || $rangeState === RANGE_STATE.End) return COLORS.darkBlue;
-  if ($rangeState === RANGE_STATE.Start) return COLORS.blue;
-  if ($rangeState === RANGE_STATE.Between) return COLORS.lightBlue;
+  if ($isSelected || $rangeState === End) return darkBlue;
+  if ($rangeState === Start) return blue;
+  if ($rangeState === Between) return lightBlue;
 
-  return COLORS.white;
+  return white;
 };
 
 export const determineTextColor = (
@@ -19,16 +23,11 @@ export const determineTextColor = (
   $rangeState: RANGE_STATE | undefined,
   $isHoliday: boolean,
 ): string => {
-  if (
-    $isSelected ||
-    $rangeState === RANGE_STATE.Start ||
-    $rangeState === RANGE_STATE.End
-  )
-    return COLORS.white;
-  if ($isHoliday) return COLORS.orange;
-  if ($rangeState === RANGE_STATE.Between) return COLORS.darkBlue;
-  if ($isDisabled) return COLORS.lightGray;
-  if ($isWeekend) return COLORS.red;
+  if ($isSelected || $rangeState === Start || $rangeState === End) return white;
+  if ($isHoliday) return orange;
+  if ($rangeState === Between) return darkBlue;
+  if ($isDisabled) return lightGray;
+  if ($isWeekend) return red;
 
-  return COLORS.black;
+  return black;
 };

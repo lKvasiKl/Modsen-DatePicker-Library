@@ -21,6 +21,7 @@ export const SliderButton = styled(Button)`
 
 export const Title = styled.h1`
   ${baseText}
+
   font-size: ${fontSizeM}px;
   font-weight: ${fontWeightL};
   cursor: pointer;

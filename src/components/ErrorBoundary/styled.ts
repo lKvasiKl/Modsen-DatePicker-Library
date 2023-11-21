@@ -11,10 +11,12 @@ export const ErrorBoundaryContainer = styled(Container)`
 
 export const Error = styled.p`
   ${baseText}
+
   color: ${redColor};
 `;
 
 export const Text = styled.span`
   ${baseText}
+
   text-align: center;
 `;

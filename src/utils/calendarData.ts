@@ -20,15 +20,12 @@ export const isSelectedDay = (date: Date, selectedDate: Date): boolean => {
 };
 
 export const getCalendarWeekData = (firstDayOfWeek: Date) => {
-  const weekData = [];
-
-  for (let i = 0; i < 7; i++) {
+  return Array.from({ length: 7 }, (_, i) => {
     const currentDate = new Date(firstDayOfWeek);
     currentDate.setDate(firstDayOfWeek.getDate() + i);
-    weekData.push(currentDate);
-  }
 
-  return weekData;
+    return currentDate;
+  });
 };
 
 export const getCalendarMonthData = (
@@ -38,9 +35,8 @@ export const getCalendarMonthData = (
 ) => {
   const totalDaysInMonth = getDaysInMonth(year, monthNumber);
   const monthFirstDay = getMonthFirstDay(year, monthNumber);
-  const calendarData = [];
 
-  let daysFromPrevMonth;
+  let daysFromPrevMonth: number;
   if (isMondayFirst) {
     daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay - 1) % DAYS_IN_WEEK;
   } else {
@@ -58,43 +54,32 @@ export const getCalendarMonthData = (
 
   const prevMonthDays = getDaysInMonth(prevMonthYear, prevMonth);
 
-  for (
-    let day = prevMonthDays - daysFromPrevMonth + 1;
-    day <= prevMonthDays;
-    day++
-  ) {
-    calendarData.push(new Date(prevMonthYear, prevMonth, day));
-  }
+  const prevMonthDates = Array.from({ length: daysFromPrevMonth }, (_, i) => {
+    const day = prevMonthDays - daysFromPrevMonth + 1 + i;
+    return new Date(prevMonthYear, prevMonth, day);
+  });
 
-  for (let day = 1; day <= totalDaysInMonth; day++) {
-    calendarData.push(new Date(year, monthNumber, day));
-  }
+  const currentMonthDates = Array.from({ length: totalDaysInMonth }, (_, i) => {
+    const day = i + 1;
+    return new Date(year, monthNumber, day);
+  });
 
   const remainingDays = totalDaysInMonth + daysFromPrevMonth;
   const weeksToAdd = Math.ceil(MAX_CALENDAR_DAYS / DAYS_IN_WEEK);
   const daysToAdd = weeksToAdd * DAYS_IN_WEEK - remainingDays;
 
-  for (let day = 1; day <= daysToAdd; day++) {
+  const nextMonthDates = Array.from({ length: daysToAdd }, (_, i) => {
+    const day = i + 1;
     const newDate = new Date(nextMonthYear, nextMonth, day);
 
-    if (calendarData.length === MIN_CALENDAR_DAYS) {
-      return calendarData;
-    }
+    return newDate.getMonth() === nextMonth ? newDate : null;
+  }).filter((date) => date !== null) as Date[];
 
-    if (newDate.getMonth() === nextMonth) {
-      calendarData.push(newDate);
-    }
-  }
-
-  return calendarData;
+  return [...prevMonthDates, ...currentMonthDates, ...nextMonthDates];
 };
 
 export const getCalendarYearData = (year: number, isMondayFirst = false) => {
-  const yearData = [];
-  for (let month = 0; month < 12; month++) {
-    const monthData = getCalendarMonthData(month, year, isMondayFirst);
-    yearData.push(monthData);
-  }
-
-  return yearData;
+  return Array.from({ length: 12 }, (_, month) =>
+    getCalendarMonthData(month, year, isMondayFirst),
+  );
 };

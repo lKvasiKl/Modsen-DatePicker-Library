@@ -18,6 +18,7 @@ export const DatePickerContainer = styled(Container)`
 
 export const Label = styled.label`
   ${baseText}
+
   font-size: ${fontSizeL}px;
 `;
 
@@ -32,8 +33,13 @@ export const DatePickerInputWrapper = styled(Container)`
   position: relative;
 `;
 
+export const InfoContainer = styled(Container)`
+  gap: ${spaceS}px;
+`;
+
 export const Error = styled.span`
   ${baseText}
+
   font-size: ${fontSizeS}px;
   font-weight: ${fontWeightS};
   color: ${redColor};

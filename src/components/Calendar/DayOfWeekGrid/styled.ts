@@ -25,6 +25,7 @@ export const MiniCalendarWrapper = styled(Container)`
 
 export const MonthText = styled.p`
   ${baseText}
+
   align-self: flex-start;
   padding-left: ${spaceM}px;
 `;

@@ -1,10 +1,5 @@
 import { useCallback } from "react";
-import {
-  GridSlider,
-  DayOfWeekGrid,
-  WeekdaysHeader,
-  ClearButton,
-} from "components";
+import { GridSlider, DayOfWeekGrid, WeekdaysHeader, Button } from "components";
 
 import { useDate } from "providers/DateProvider";
 
@@ -12,19 +7,24 @@ import ErrorBoundary from "components/ErrorBoundary";
 import ThemeWrapper from "components/ThemeWrapper";
 
 import { CALENDAR_TYPES, CalendarProps } from "./types";
+import { CLEAR_BUTTON_TITLE } from "./config";
 import { CalendarContainer } from "./styled";
 
-const Calendar = ({
-  type = CALENDAR_TYPES.Month,
-  isMondayFirst,
-  isWeekendDate,
-  isWithRange,
-  minDate,
-  maxDate,
-  isTodosEnabled,
-  isHolidayDate,
-}: CalendarProps) => {
-  const { setRange } = useDate();
+const { Month, Week } = CALENDAR_TYPES;
+
+const Calendar = (props: CalendarProps) => {
+  const {
+    type = Month,
+    isMondayFirst,
+    isWeekendDate,
+    isWithRange,
+    minDate,
+    maxDate,
+    isTodosEnabled,
+    isHolidayDate,
+  } = props;
+
+  const { range, setRange } = useDate();
 
   const handlClearButtonClick = useCallback(() => {
     if (setRange) {
@@ -32,20 +32,26 @@ const Calendar = ({
     }
   }, [setRange]);
 
+  const isRangeExist =
+    isWithRange && Boolean(range?.rangeStart) && Boolean(range?.rangeEnd);
+
   return (
     <ThemeWrapper>
       <ErrorBoundary>
-        <CalendarContainer $isWithRange={isWithRange} data-testid="calendar">
+        <CalendarContainer
+          $isRangeExist={isRangeExist}
+          $isTodosEnabled={isTodosEnabled}
+          data-testid="calendar"
+        >
           <GridSlider
             isMondayFirst={isMondayFirst}
             maxDate={maxDate}
             minDate={minDate}
             type={type}
           />
-          {type === CALENDAR_TYPES.Week ||
-            (type === CALENDAR_TYPES.Month && (
-              <WeekdaysHeader isMondayFirst={isMondayFirst} />
-            ))}
+          {(type === Week || type === Month) && (
+            <WeekdaysHeader isMondayFirst={isMondayFirst} />
+          )}
           <DayOfWeekGrid
             isHolidayDate={isHolidayDate}
             isMondayFirst={isMondayFirst}
@@ -57,8 +63,12 @@ const Calendar = ({
             type={type}
           />
         </CalendarContainer>
-        {isWithRange && (
-          <ClearButton title="Clear" onClearClick={handlClearButtonClick} />
+        {isRangeExist && (
+          <Button
+            $isTodosEnabled={isTodosEnabled}
+            title={CLEAR_BUTTON_TITLE}
+            onButtonClick={handlClearButtonClick}
+          />
         )}
       </ErrorBoundary>
     </ThemeWrapper>
