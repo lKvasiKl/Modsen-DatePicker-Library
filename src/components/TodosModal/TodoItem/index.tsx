@@ -19,7 +19,7 @@ const TodoItem = React.memo((props: TodoItemProps) => {
     const TODO_CACHE_KEY = selectedDate.toDateString();
     const todos = getCache<Todo[]>(TODO_CACHE_KEY);
 
-    const updatedTodos = todos.map((todo) => {
+    const updatedTodos = todos.map((todo: TodoItemProps) => {
       if (todo.id === id) {
         return { ...todo, isDone: !todo.isDone };
       }
@@ -35,7 +35,7 @@ const TodoItem = React.memo((props: TodoItemProps) => {
     const TODO_CACHE_KEY = selectedDate.toDateString();
     const todos = getCache<Todo[]>(TODO_CACHE_KEY);
 
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    const updatedTodos = todos.filter((todo: TodoItemProps) => todo.id !== id);
 
     setTodos(updatedTodos);
     saveCache(TODO_CACHE_KEY, updatedTodos);

@@ -3,21 +3,13 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
+import dts from "rollup-plugin-dts";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import alias from "@rollup/plugin-alias";
 
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "url";
 import { createRequire } from "node:module";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 const requireFile = createRequire(import.meta.url);
 const packageJson = requireFile("./package.json");
-
-const customResolver = resolve({
-  extensions: [".mjs", ".js", ".jsx", ".json", ".sass", ".scss"],
-});
-const projectRootDir = path.resolve(__dirname);
 
 export default [
   {
@@ -36,18 +28,33 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
+      resolve(
+        alias({
+          entries: [
+            { find: "decorators", replacement: "./decorators" },
+            {
+              find: "providers/DateProvider",
+              replacement: "./providers/DateProvider",
+            },
+            {
+              find: "components/DatePicker",
+              replacement: "./components/DatePicker",
+            },
+          ],
+        }),
+      ),
       commonjs(),
+      nodeResolve(),
       typescript(),
       postcss({
         extensions: [".css"],
-        minimize: true,
-      }),
-      alias({
-        entries: [
-          { find: "app", replacement: path.resolve(projectRootDir, "src") },
-        ],
-        customResolver,
       }),
     ],
+  },
+  {
+    input: "lib/index.d.ts",
+    output: [{ file: "lib/index.d.ts", format: "es" }],
+    plugins: [dts()],
+    external: [/\.css$/],
   },
 ];
