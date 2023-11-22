@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "pre-commit": [
+            "yarn lint --fix",
+            "yarn prettier --write",
+            "yarn test"
+        ],
+        "pre-push": [
+            "git fetch --update-shallow"
+        ]
+    }
+}
