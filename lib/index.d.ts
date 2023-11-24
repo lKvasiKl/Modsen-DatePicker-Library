@@ -1,1 +1,1 @@
-export { default as CalendarService } from "./decorators";
+export { default as CalendarService } from 'decorators';
