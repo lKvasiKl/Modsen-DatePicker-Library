@@ -1,0 +1,9 @@
+export declare const PLACEHOLDER: string;
+export declare const ERROR_MESSAGE: string;
+export declare const INVALID_DATE_MESSAGE: string;
+export declare const SEPARATOR: string;
+export declare const DAY_LENGTH: number;
+export declare const DAY_SEPORATOR_MONTH_LENGTH: number;
+export declare const DATE_FORMAT_LENGTH: number;
+export declare const MAX_YEAR: number;
+export declare const DATE_FORMAT_REGEX: RegExp;
