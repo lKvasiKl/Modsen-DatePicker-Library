@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from "react";
-import { ICONS } from "assets";
 
 import { useCalendar } from "providers/CalendarProvider";
 
 import { getFirstDayOfWeek } from "utils/calendarDateData";
 
+import { ICONS } from "constants/icons";
 import { Icon } from "constants/styles/global";
 import {
   DAYS_IN_WEEK,
@@ -19,6 +19,7 @@ import { Direction, GridSliderProps, PREV_GRID, NEXT_GRID } from "./types";
 import { SliderButton, SliderContainer, Title } from "./styled";
 
 const { Week, Month, Year } = CALENDAR_TYPES;
+const { prevGrid, nextGrid } = ICONS;
 
 const GridSlider = React.memo((props: GridSliderProps) => {
   const { type, minDate, maxDate, isMondayFirst } = props;
@@ -110,14 +111,14 @@ const GridSlider = React.memo((props: GridSliderProps) => {
         data-testid="prev-button"
         onClick={handleGridChange(PREV_GRID)}
       >
-        <Icon src={ICONS.prevGrid} />
+        <Icon src={prevGrid} />
       </SliderButton>
       <Title data-testid="grid-slider">{title}</Title>
       <SliderButton
         data-testid="next-button"
         onClick={handleGridChange(NEXT_GRID)}
       >
-        <Icon src={ICONS.nextGrid} />
+        <Icon src={nextGrid} />
       </SliderButton>
     </SliderContainer>
   );
