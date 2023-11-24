@@ -3,7 +3,6 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import dts from "rollup-plugin-dts";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import alias from "@rollup/plugin-alias";
 
@@ -45,16 +44,10 @@ export default [
       ),
       commonjs(),
       nodeResolve(),
-      typescript(),
+      typescript({ tsconfig: "./tsconfig.json" }),
       postcss({
         extensions: [".css"],
       }),
     ],
-  },
-  {
-    input: "lib/index.d.ts",
-    output: [{ file: "lib/index.d.ts", format: "es" }],
-    plugins: [dts()],
-    external: [/\.css$/],
   },
 ];
