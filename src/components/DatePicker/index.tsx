@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { DatePickerInput } from "components";
-import { ICONS } from "assets";
 
 import { useCalendar } from "providers/CalendarProvider";
 import { useDate } from "providers/DateProvider";
@@ -9,6 +8,7 @@ import useClickOutside from "hooks/useClickOutside";
 
 import { formatDate } from "utils/calendarDateData";
 
+import { ICONS } from "constants/icons";
 import { Icon } from "constants/styles/global";
 
 import { DatePickerPros } from "./types";
@@ -20,6 +20,8 @@ import {
   CalendarWrapper,
   InfoContainer,
 } from "./styled";
+
+const { calendar, clear } = ICONS;
 
 const DatePicker = React.memo(
   ({ label, rangeValue, Calendar }: DatePickerPros) => {
@@ -64,7 +66,7 @@ const DatePicker = React.memo(
         <DatePickerInputWrapper>
           <Icon
             data-testid="calendar-icon-button"
-            src={ICONS.calendar}
+            src={calendar}
             onClick={handleCalendarIconClick}
           />
           <DatePickerInput
@@ -76,7 +78,7 @@ const DatePicker = React.memo(
           {inputValue && (
             <Icon
               data-testid="clear-icon-button"
-              src={ICONS.clear}
+              src={clear}
               onClick={handleClearInput}
             />
           )}

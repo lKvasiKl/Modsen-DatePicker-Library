@@ -1,7 +1,8 @@
 import {
+  DATE_UNIT,
   DAYS_IN_WEEK,
-  MIN_CALENDAR_DAYS,
   MAX_CALENDAR_DAYS,
+  MONTH_COUNT,
 } from "constants/calendarData";
 
 import {
@@ -20,7 +21,7 @@ export const isSelectedDay = (date: Date, selectedDate: Date): boolean => {
 };
 
 export const getCalendarWeekData = (firstDayOfWeek: Date) => {
-  return Array.from({ length: 7 }, (_, i) => {
+  return Array.from({ length: DAYS_IN_WEEK }, (_, i) => {
     const currentDate = new Date(firstDayOfWeek);
     currentDate.setDate(firstDayOfWeek.getDate() + i);
 
@@ -38,7 +39,8 @@ export const getCalendarMonthData = (
 
   let daysFromPrevMonth: number;
   if (isMondayFirst) {
-    daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay - 1) % DAYS_IN_WEEK;
+    daysFromPrevMonth =
+      (DAYS_IN_WEEK + monthFirstDay - DATE_UNIT) % DAYS_IN_WEEK;
   } else {
     daysFromPrevMonth = (DAYS_IN_WEEK + monthFirstDay) % DAYS_IN_WEEK;
   }
@@ -55,12 +57,12 @@ export const getCalendarMonthData = (
   const prevMonthDays = getDaysInMonth(prevMonthYear, prevMonth);
 
   const prevMonthDates = Array.from({ length: daysFromPrevMonth }, (_, i) => {
-    const day = prevMonthDays - daysFromPrevMonth + 1 + i;
+    const day = prevMonthDays - daysFromPrevMonth + DATE_UNIT + i;
     return new Date(prevMonthYear, prevMonth, day);
   });
 
   const currentMonthDates = Array.from({ length: totalDaysInMonth }, (_, i) => {
-    const day = i + 1;
+    const day = i + DATE_UNIT;
     return new Date(year, monthNumber, day);
   });
 
@@ -69,7 +71,7 @@ export const getCalendarMonthData = (
   const daysToAdd = weeksToAdd * DAYS_IN_WEEK - remainingDays;
 
   const nextMonthDates = Array.from({ length: daysToAdd }, (_, i) => {
-    const day = i + 1;
+    const day = i + DATE_UNIT;
     const newDate = new Date(nextMonthYear, nextMonth, day);
 
     return newDate.getMonth() === nextMonth ? newDate : null;
@@ -79,7 +81,7 @@ export const getCalendarMonthData = (
 };
 
 export const getCalendarYearData = (year: number, isMondayFirst = false) => {
-  return Array.from({ length: 12 }, (_, month) =>
+  return Array.from({ length: MONTH_COUNT }, (_, month) =>
     getCalendarMonthData(month, year, isMondayFirst),
   );
 };

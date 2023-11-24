@@ -58,7 +58,7 @@ const DayOfWeekGrid = (props: DayOfWeekGridProps) => {
     <>
       {GREED_DATA && (
         <DayOfWeekGridContainer data-testid="day-of-week-grid">
-          {GREED_DATA!.map((date) => {
+          {GREED_DATA.map((date) => {
             return (
               <DayOfWeek
                 dayOfWeek={date}

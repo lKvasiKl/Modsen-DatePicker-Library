@@ -44,11 +44,11 @@ const DayofWeek = React.memo((props: DayOfWeekProps) => {
       if (isWithRange && (!range || (!range.rangeStart && !range.rangeEnd))) {
         setRange({ rangeStart: dayOfWeek, rangeEnd: undefined });
       } else {
-        const [start, end] =
-          dayOfWeek < range!.rangeStart!
-            ? [dayOfWeek, range!.rangeStart]
-            : [range!.rangeStart, dayOfWeek];
-        setRange({ rangeStart: start, rangeEnd: end });
+        const start = range && range.rangeStart ? range.rangeStart : dayOfWeek;
+        const rangeArr =
+          dayOfWeek < start ? [dayOfWeek, start] : [start, dayOfWeek];
+
+        setRange({ rangeStart: rangeArr[0], rangeEnd: rangeArr[1] });
       }
     }
   }, [
@@ -66,20 +66,16 @@ const DayofWeek = React.memo((props: DayOfWeekProps) => {
   ]);
 
   const getRangeState = (date: Date) => {
-    if (range && range.rangeStart && range.rangeEnd) {
-      const isStartDate = date.getTime() === range.rangeStart.getTime();
-      const isEndDate = date.getTime() === range.rangeEnd.getTime();
-      const isBetween = date > range.rangeStart && date < range.rangeEnd;
-
-      if (isStartDate) {
+    if (range && range.rangeStart) {
+      if (date.getTime() === range.rangeStart.getTime()) {
         return Start;
       }
 
-      if (isEndDate) {
+      if (range.rangeEnd && date.getTime() === range.rangeEnd.getTime()) {
         return End;
       }
 
-      if (isBetween) {
+      if (range.rangeEnd && date > range.rangeStart && date < range.rangeEnd) {
         return Between;
       }
     }
