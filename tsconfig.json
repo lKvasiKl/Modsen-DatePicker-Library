@@ -13,10 +13,20 @@
     "declarationDir": "lib",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "NodeNext",
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "assets/*" : ["./src/assets/*"],
+      "components/*" : ["./src/components/*"],
+      "decorators/*" : ["./src/decorators/*"],
+      "hooks/*" : ["./src/hooks/*"],
+      "providers/*" : ["./src/providers/*"],
+      "utils/*" : ["./src/utils/*"],
+      "constants/*" : ["./src/constants/*"],
+    },
   },
   "exclude": ["node_modules", "lib"]
 }
