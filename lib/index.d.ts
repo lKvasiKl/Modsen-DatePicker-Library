@@ -1,4 +1,3 @@
-/// <reference types="src/types" />
 export { default as CalendarService } from "decorators";
 export { default as withHolidays } from "decorators/withHolidays";
 export { default as withMinAndMaxDate } from "decorators/withMinAndMaxDate";
