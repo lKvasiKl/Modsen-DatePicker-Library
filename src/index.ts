@@ -1,4 +1,4 @@
-export { default as CalendarService } from "decorators/index";
+export { default as CalendarService } from "decorators";
 export { default as withHolidays } from "decorators/withHolidays";
 export { default as withMinAndMaxDate } from "decorators/withMinAndMaxDate";
 export { default as withMondayFirst } from "decorators/withMondayFirst";

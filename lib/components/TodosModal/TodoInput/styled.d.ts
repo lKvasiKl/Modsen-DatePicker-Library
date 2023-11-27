@@ -1,10 +1,13 @@
 /// <reference types="react" />
 /// <reference types="react" />
 export declare const Wrapper: import("styled-components").IStyledComponent<"web", {
+    slot?: string | undefined;
+    style?: import("react").CSSProperties | undefined;
+    title?: string | undefined;
+    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
-    style?: import("react").CSSProperties | undefined;
     translate?: "yes" | "no" | undefined;
     key?: import("react").Key | null | undefined;
     defaultChecked?: boolean | undefined;
@@ -22,10 +25,8 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     lang?: string | undefined;
     nonce?: string | undefined;
     placeholder?: string | undefined;
-    slot?: string | undefined;
     spellCheck?: (boolean | "false" | "true") | undefined;
     tabIndex?: number | undefined;
-    title?: string | undefined;
     radioGroup?: string | undefined;
     role?: import("react").AriaRole | undefined;
     about?: string | undefined;
@@ -49,7 +50,7 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -63,17 +64,17 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -90,7 +91,7 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;
@@ -104,7 +105,6 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     "aria-valuemin"?: number | undefined;
     "aria-valuenow"?: number | undefined;
     "aria-valuetext"?: string | undefined;
-    children?: import("react").ReactNode;
     dangerouslySetInnerHTML?: {
         __html: string | TrustedHTML;
     } | undefined;
@@ -321,7 +321,7 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -335,17 +335,17 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -362,7 +362,7 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;
@@ -544,10 +544,13 @@ export declare const Wrapper: import("styled-components").IStyledComponent<"web"
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
 export declare const InputWrapper: import("styled-components").IStyledComponent<"web", {
+    slot?: string | undefined;
+    style?: import("react").CSSProperties | undefined;
+    title?: string | undefined;
+    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
-    style?: import("react").CSSProperties | undefined;
     translate?: "yes" | "no" | undefined;
     key?: import("react").Key | null | undefined;
     defaultChecked?: boolean | undefined;
@@ -565,10 +568,8 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     lang?: string | undefined;
     nonce?: string | undefined;
     placeholder?: string | undefined;
-    slot?: string | undefined;
     spellCheck?: (boolean | "false" | "true") | undefined;
     tabIndex?: number | undefined;
-    title?: string | undefined;
     radioGroup?: string | undefined;
     role?: import("react").AriaRole | undefined;
     about?: string | undefined;
@@ -592,7 +593,7 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -606,17 +607,17 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -633,7 +634,7 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;
@@ -647,7 +648,6 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     "aria-valuemin"?: number | undefined;
     "aria-valuenow"?: number | undefined;
     "aria-valuetext"?: string | undefined;
-    children?: import("react").ReactNode;
     dangerouslySetInnerHTML?: {
         __html: string | TrustedHTML;
     } | undefined;
@@ -864,7 +864,7 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -878,17 +878,17 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -905,7 +905,7 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;
@@ -1087,22 +1087,25 @@ export declare const InputWrapper: import("styled-components").IStyledComponent<
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
 export declare const InputButton: import("styled-components").IStyledComponent<"web", {
+    type?: "button" | "reset" | "submit" | undefined;
+    form?: string | undefined;
+    slot?: string | undefined;
+    style?: import("react").CSSProperties | undefined;
+    title?: string | undefined;
+    children?: import("react").ReactNode;
+    value?: string | number | readonly string[] | undefined;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
-    style?: import("react").CSSProperties | undefined;
     disabled?: boolean | undefined;
     translate?: "yes" | "no" | undefined;
     key?: import("react").Key | null | undefined;
-    form?: string | undefined;
     formAction?: string | undefined;
     formEncType?: string | undefined;
     formMethod?: string | undefined;
     formNoValidate?: boolean | undefined;
     formTarget?: string | undefined;
     name?: string | undefined;
-    type?: "button" | "reset" | "submit" | undefined;
-    value?: string | number | readonly string[] | undefined;
     defaultChecked?: boolean | undefined;
     defaultValue?: string | number | readonly string[] | undefined;
     suppressContentEditableWarning?: boolean | undefined;
@@ -1118,10 +1121,8 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     lang?: string | undefined;
     nonce?: string | undefined;
     placeholder?: string | undefined;
-    slot?: string | undefined;
     spellCheck?: (boolean | "false" | "true") | undefined;
     tabIndex?: number | undefined;
-    title?: string | undefined;
     radioGroup?: string | undefined;
     role?: import("react").AriaRole | undefined;
     about?: string | undefined;
@@ -1145,7 +1146,7 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -1159,17 +1160,17 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -1186,7 +1187,7 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;
@@ -1200,7 +1201,6 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     "aria-valuemin"?: number | undefined;
     "aria-valuenow"?: number | undefined;
     "aria-valuetext"?: string | undefined;
-    children?: import("react").ReactNode;
     dangerouslySetInnerHTML?: {
         __html: string | TrustedHTML;
     } | undefined;
@@ -1427,7 +1427,7 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     results?: number | undefined;
     security?: string | undefined;
     unselectable?: "on" | "off" | undefined;
-    inputMode?: "none" | "text" | "search" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
+    inputMode?: "search" | "text" | "none" | "tel" | "url" | "email" | "numeric" | "decimal" | undefined;
     is?: string | undefined;
     "aria-activedescendant"?: string | undefined;
     "aria-atomic"?: (boolean | "false" | "true") | undefined;
@@ -1441,17 +1441,17 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     "aria-colindextext"?: string | undefined;
     "aria-colspan"?: number | undefined;
     "aria-controls"?: string | undefined;
-    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "time" | "location" | "date" | undefined;
+    "aria-current"?: boolean | "time" | "page" | "false" | "true" | "step" | "location" | "date" | undefined;
     "aria-describedby"?: string | undefined;
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
     "aria-grabbed"?: (boolean | "false" | "true") | undefined;
-    "aria-haspopup"?: boolean | "listbox" | "grid" | "menu" | "false" | "true" | "dialog" | "tree" | undefined;
+    "aria-haspopup"?: boolean | "dialog" | "menu" | "listbox" | "grid" | "false" | "true" | "tree" | undefined;
     "aria-hidden"?: (boolean | "false" | "true") | undefined;
     "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
     "aria-keyshortcuts"?: string | undefined;
@@ -1468,7 +1468,7 @@ export declare const InputButton: import("styled-components").IStyledComponent<"
     "aria-posinset"?: number | undefined;
     "aria-pressed"?: boolean | "mixed" | "false" | "true" | undefined;
     "aria-readonly"?: (boolean | "false" | "true") | undefined;
-    "aria-relevant"?: "all" | "text" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
+    "aria-relevant"?: "text" | "all" | "additions" | "additions removals" | "additions text" | "removals" | "removals additions" | "removals text" | "text additions" | "text removals" | undefined;
     "aria-required"?: (boolean | "false" | "true") | undefined;
     "aria-roledescription"?: string | undefined;
     "aria-rowcount"?: number | undefined;

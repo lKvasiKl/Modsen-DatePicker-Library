@@ -10,6 +10,6 @@ declare class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryS
         error: Error;
     };
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void;
-    render(): string | number | boolean | Iterable<ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
+    render(): string | number | boolean | import("react/jsx-runtime").JSX.Element | Iterable<ReactNode> | null | undefined;
 }
 export default ErrorBoundary;
