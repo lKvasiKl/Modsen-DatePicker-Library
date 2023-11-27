@@ -9,6 +9,9 @@
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/",
