@@ -1,10 +1,10 @@
 /// <reference types="react" />
 /// <reference types="react" />
 export declare const SliderContainer: import("styled-components").IStyledComponent<"web", {
-    children?: import("react").ReactNode;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
+    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -69,7 +69,7 @@ export declare const SliderContainer: import("styled-components").IStyledCompone
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -340,7 +340,7 @@ export declare const SliderContainer: import("styled-components").IStyledCompone
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -544,12 +544,13 @@ export declare const SliderContainer: import("styled-components").IStyledCompone
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
 export declare const SliderButton: import("styled-components").IStyledComponent<"web", {
-    children?: import("react").ReactNode;
-    value?: string | number | readonly string[] | undefined;
+    type?: "button" | "reset" | "submit" | undefined;
     form?: string | undefined;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
+    children?: import("react").ReactNode;
+    value?: string | number | readonly string[] | undefined;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -562,7 +563,6 @@ export declare const SliderButton: import("styled-components").IStyledComponent<
     formNoValidate?: boolean | undefined;
     formTarget?: string | undefined;
     name?: string | undefined;
-    type?: "button" | "reset" | "submit" | undefined;
     defaultChecked?: boolean | undefined;
     defaultValue?: string | number | readonly string[] | undefined;
     suppressContentEditableWarning?: boolean | undefined;
@@ -622,7 +622,7 @@ export declare const SliderButton: import("styled-components").IStyledComponent<
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -903,7 +903,7 @@ export declare const SliderButton: import("styled-components").IStyledComponent<
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -1175,7 +1175,7 @@ export declare const Title: import("styled-components").IStyledComponent<"web", 
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
