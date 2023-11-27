@@ -1,53 +1,48 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import { babel } from "@rollup/plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import external from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import postcss from "rollup-plugin-postcss";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import alias from "@rollup/plugin-alias";
-
-import { createRequire } from "node:module";
-const requireFile = createRequire(import.meta.url);
-const packageJson = requireFile("./package.json");
 
 export default [
   {
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main,
+        file: "lib/index.js",
         format: "cjs",
-        sourcemap: true,
       },
       {
-        file: packageJson.module,
-        format: "esm",
-        sourcemap: true,
+        file: "lib/index.es.js",
+        format: "es",
+        exports: "named",
       },
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(
-        alias({
-          entries: [
-            { find: "decorators", replacement: "./decorators" },
-            {
-              find: "providers/DateProvider",
-              replacement: "./providers/DateProvider",
-            },
-            {
-              find: "components/DatePicker",
-              replacement: "./components/DatePicker",
-            },
-          ],
-        }),
-      ),
-      commonjs(),
-      nodeResolve(),
-      typescript({ tsconfig: "./tsconfig.json" }),
-      postcss({
-        extensions: [".css"],
+      babel({
+        exclude: "node_modules/**",
+        presets: ["@babel/preset-react"],
       }),
+      external(),
+      resolve(),
+      alias({
+        entries: [
+          { find: "decorators", replacement: "./decorators" },
+          {
+            find: "providers/DateProvider",
+            replacement: "./providers/DateProvider",
+          },
+          {
+            find: "components/DatePicker",
+            replacement: "./components/DatePicker",
+          },
+        ],
+      }),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      terser(),
     ],
   },
 ];
