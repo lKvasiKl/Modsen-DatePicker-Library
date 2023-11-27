@@ -70,7 +70,7 @@ export declare const CalendarContainer: import("styled-components").IStyledCompo
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -343,7 +343,7 @@ export declare const CalendarContainer: import("styled-components").IStyledCompo
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
