@@ -4,6 +4,8 @@ import external from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import svg from "rollup-plugin-svg";
+import copy from "rollup-plugin-copy-assets";
 import alias from "@rollup/plugin-alias";
 
 export default [
@@ -27,22 +29,31 @@ export default [
         presets: ["@babel/preset-react"],
       }),
       external(),
-      resolve(),
+      resolve({
+        extensions: [
+          ".mjs",
+          ".js",
+          ".json",
+          ".node",
+          ".jsx",
+          ".tsx",
+          ".ts",
+          ".svg",
+        ],
+      }),
+      svg(),
+      copy({ assets: ["./src/assets"] }),
       alias({
         entries: [
-          { find: "decorators", replacement: "./decorators" },
           {
-            find: "providers/DateProvider",
-            replacement: "./providers/DateProvider",
-          },
-          {
-            find: "components/DatePicker",
-            replacement: "./components/DatePicker",
+            find: "assets",
+            replacement: "../assets",
           },
         ],
       }),
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
     ],
+    external: ["react", "react-dom", "styled-components"],
   },
 ];
