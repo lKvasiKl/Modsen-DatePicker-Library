@@ -1,4 +1,4 @@
-import { DefaultTheme, styled } from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
 import { determineRadius } from "utils/borderRadiusCalculator";
 import {
