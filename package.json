@@ -12,6 +12,9 @@
   "files": [
     "/lib"
   ],
+  "rollup": {
+    "browser": true
+  },
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/",
