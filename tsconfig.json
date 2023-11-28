@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["@testing-library/jest-dom", "jest-styled-components"],
+    "types": ["@testing-library/jest-dom", "jest-styled-components", "@types/styled-components"],
     "target": "ESNext",
     "outDir": "lib",
     "lib": ["dom", "dom.iterable", "esnext"],

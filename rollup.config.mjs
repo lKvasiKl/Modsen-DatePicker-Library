@@ -2,6 +2,7 @@ import { babel } from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import svg from "rollup-plugin-svg";
@@ -17,12 +18,14 @@ export default [
         format: "cjs",
         exports: "named",
         interop: "auto",
+        sourcemap: true,
       },
       {
         file: "lib/index.es.js",
         format: "es",
         interop: "esModule",
         exports: "named",
+        sourcemap: true,
       },
     ],
     plugins: [
@@ -47,6 +50,7 @@ export default [
       }),
       svg(),
       copy({ assets: ["./src/assets"] }),
+      commonjs(),
       alias({
         entries: [
           {
