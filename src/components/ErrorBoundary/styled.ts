@@ -1,4 +1,4 @@
-import { styled, DefaultTheme } from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
 import { Container } from "constants/styles/global";
 import { baseText } from "constants/styles/mixins";
