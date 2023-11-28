@@ -55,6 +55,5 @@ export default [
       terser(),
     ],
     external: ["react", "react-dom", "styled-components"],
-    globals: { "styled-components": "styled" },
   },
 ];
