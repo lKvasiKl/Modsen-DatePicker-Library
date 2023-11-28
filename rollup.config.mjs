@@ -15,6 +15,7 @@ export default [
       {
         file: "lib/index.js",
         format: "cjs",
+        interop: "esModule",
       },
       {
         file: "lib/index.es.js",
