@@ -69,7 +69,7 @@ export declare const DayOfWeekGridContainer: import("styled-components").IStyled
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -273,10 +273,10 @@ export declare const DayOfWeekGridContainer: import("styled-components").IStyled
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
 export declare const YearCalendarContainer: import("styled-components").IStyledComponent<"web", {
+    children?: import("react").ReactNode;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
-    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -341,7 +341,7 @@ export declare const YearCalendarContainer: import("styled-components").IStyledC
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -612,7 +612,7 @@ export declare const YearCalendarContainer: import("styled-components").IStyledC
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -816,10 +816,10 @@ export declare const YearCalendarContainer: import("styled-components").IStyledC
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
 export declare const MiniCalendarWrapper: import("styled-components").IStyledComponent<"web", {
+    children?: import("react").ReactNode;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
-    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -884,7 +884,7 @@ export declare const MiniCalendarWrapper: import("styled-components").IStyledCom
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -1155,7 +1155,7 @@ export declare const MiniCalendarWrapper: import("styled-components").IStyledCom
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -1427,7 +1427,7 @@ export declare const MonthText: import("styled-components").IStyledComponent<"we
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;

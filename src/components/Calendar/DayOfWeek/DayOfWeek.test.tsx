@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { DayOfWeek, ThemeWrapper } from "components";
+
+import { DayOfWeek, ThemeWrapper } from "components/index";
 
 describe("DayOfWeek component", () => {
   it("renders DayOfWeek with date", () => {

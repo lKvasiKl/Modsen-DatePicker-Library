@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import CalendarService from "decorators";
+import CalendarService from "decorators/index";
 import withWeekendsDays from "decorators/withWeekends";
 import withMondayFirst from "decorators/withMondayFirst";
 import withTodo from "decorators/withTodos";

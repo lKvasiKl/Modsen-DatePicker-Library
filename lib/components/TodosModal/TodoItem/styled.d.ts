@@ -2,10 +2,10 @@
 /// <reference types="react" />
 import { TodoItemStyledProps } from "./types";
 export declare const TodoWrapper: import("styled-components").IStyledComponent<"web", {
+    children?: import("react").ReactNode;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
-    children?: import("react").ReactNode;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -70,7 +70,7 @@ export declare const TodoWrapper: import("styled-components").IStyledComponent<"
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -341,7 +341,7 @@ export declare const TodoWrapper: import("styled-components").IStyledComponent<"
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -546,13 +546,12 @@ export declare const TodoWrapper: import("styled-components").IStyledComponent<"
 }>;
 export declare const TodoText: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>, TodoItemStyledProps>>;
 export declare const DeleteTaskButton: import("styled-components").IStyledComponent<"web", {
-    type?: "button" | "reset" | "submit" | undefined;
+    children?: import("react").ReactNode;
+    value?: string | number | readonly string[] | undefined;
     form?: string | undefined;
     slot?: string | undefined;
     style?: import("react").CSSProperties | undefined;
     title?: string | undefined;
-    children?: import("react").ReactNode;
-    value?: string | number | readonly string[] | undefined;
     hidden?: boolean | undefined;
     color?: string | undefined;
     content?: string | undefined;
@@ -565,6 +564,7 @@ export declare const DeleteTaskButton: import("styled-components").IStyledCompon
     formNoValidate?: boolean | undefined;
     formTarget?: string | undefined;
     name?: string | undefined;
+    type?: "button" | "reset" | "submit" | undefined;
     defaultChecked?: boolean | undefined;
     defaultValue?: string | number | readonly string[] | undefined;
     suppressContentEditableWarning?: boolean | undefined;
@@ -624,7 +624,7 @@ export declare const DeleteTaskButton: import("styled-components").IStyledCompon
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;
@@ -905,7 +905,7 @@ export declare const DeleteTaskButton: import("styled-components").IStyledCompon
     "aria-description"?: string | undefined;
     "aria-details"?: string | undefined;
     "aria-disabled"?: (boolean | "false" | "true") | undefined;
-    "aria-dropeffect"?: "link" | "copy" | "none" | "move" | "execute" | "popup" | undefined;
+    "aria-dropeffect"?: "link" | "none" | "copy" | "move" | "execute" | "popup" | undefined;
     "aria-errormessage"?: string | undefined;
     "aria-expanded"?: (boolean | "false" | "true") | undefined;
     "aria-flowto"?: string | undefined;

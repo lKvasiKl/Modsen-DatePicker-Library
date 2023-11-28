@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
-import { ThemeWrapper, Weekday } from "components";
+
+import { ThemeWrapper, Weekday } from "components/index";
 
 import { WEEKDAYS } from "constants/calendarData";
 

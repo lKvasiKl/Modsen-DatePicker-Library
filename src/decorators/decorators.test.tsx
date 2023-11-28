@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import CalendarService from "decorators";
+import CalendarService from "decorators/index";
 
 import Calendar from "components/Calendar";
 import { CALENDAR_TYPES, CalendarProps } from "components/Calendar/types";

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { ErrorBoundary, ThemeWrapper } from "components";
+
+import { ErrorBoundary, ThemeWrapper } from "components/index";
 
 describe("ErrorBoundary component", () => {
   it("renders children when there is no error", () => {

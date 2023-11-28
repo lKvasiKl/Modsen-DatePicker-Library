@@ -1,8 +1,13 @@
 import { useCallback } from "react";
-import { GridSlider, DayOfWeekGrid, WeekdaysHeader, Button } from "components";
 
 import { useDate } from "providers/DateProvider";
 
+import {
+  GridSlider,
+  DayOfWeekGrid,
+  WeekdaysHeader,
+  Button,
+} from "components/index";
 import ErrorBoundary from "components/ErrorBoundary";
 import ThemeWrapper from "components/ThemeWrapper";
 
