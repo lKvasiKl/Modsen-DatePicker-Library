@@ -15,11 +15,13 @@ export default [
       {
         file: "lib/index.js",
         format: "cjs",
-        interop: "esModule",
+        exports: "named",
+        interop: "auto",
       },
       {
         file: "lib/index.es.js",
         format: "es",
+        interop: "esModule",
         exports: "named",
       },
     ],
