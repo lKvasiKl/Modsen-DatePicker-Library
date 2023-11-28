@@ -1,8 +1,8 @@
 import { ComponentType, useCallback, useState } from "react";
-import { Button, TodosModal } from "components";
 
 import { useCalendar } from "providers/CalendarProvider";
 
+import { Button, TodosModal } from "components/index";
 import { CalendarProps } from "components/Calendar/types";
 
 import usePortal from "hooks/usePortal";

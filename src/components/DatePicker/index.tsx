@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { DatePickerInput } from "components";
 
 import { useCalendar } from "providers/CalendarProvider";
 import { useDate } from "providers/DateProvider";
+
+import { DatePickerInput } from "components/index";
 
 import useClickOutside from "hooks/useClickOutside";
 

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Calendar } from "components";
+
+import { Calendar } from "components/index";
 
 import { CALENDAR_TYPES } from "./types";
 

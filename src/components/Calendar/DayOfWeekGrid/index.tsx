@@ -1,7 +1,8 @@
 import { useMemo } from "react";
-import { DayOfWeek, WeekdaysHeader } from "components";
 
 import { useCalendar } from "providers/CalendarProvider";
+
+import { DayOfWeek, WeekdaysHeader } from "components/index";
 
 import {
   getCalendarMonthData,

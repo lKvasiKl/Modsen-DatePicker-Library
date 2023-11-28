@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { Weekday } from "components";
+
+import { Weekday } from "components/index";
 
 import { WEEKDAYS } from "constants/calendarData";
 import { Container } from "constants/styles/global";

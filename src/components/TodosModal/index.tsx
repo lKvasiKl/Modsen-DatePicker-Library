@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useCallback, useState, useEffect } from "react";
-import { TodoInput, TodoItem } from "components";
 
 import { useCalendar } from "providers/CalendarProvider";
 
+import { TodoInput, TodoItem } from "components/index";
 import Modal from "components/Modal";
 
 import { getCache, saveCache } from "utils/dataCaching";

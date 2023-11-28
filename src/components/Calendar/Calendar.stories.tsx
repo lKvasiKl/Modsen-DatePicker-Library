@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import CalendarService from "decorators";
+import CalendarService from "decorators/index";
 import withTodo from "decorators/withTodos";
 import withMondayFirst from "decorators/withMondayFirst";
 import withWeekendsDays from "decorators/withWeekends";

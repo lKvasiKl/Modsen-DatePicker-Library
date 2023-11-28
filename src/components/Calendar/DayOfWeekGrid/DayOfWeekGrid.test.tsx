@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { DayOfWeekGrid, ThemeWrapper } from "components";
+
+import { DayOfWeekGrid, ThemeWrapper } from "components/index";
 
 import { CALENDAR_TYPES } from "../types";
 

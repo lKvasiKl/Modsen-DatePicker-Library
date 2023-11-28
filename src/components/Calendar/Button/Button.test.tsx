@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Button, ThemeWrapper } from "components";
+
+import { Button, ThemeWrapper } from "components/index";
 
 describe("Calendar component", () => {
   const onButtonClickMock = jest.fn();

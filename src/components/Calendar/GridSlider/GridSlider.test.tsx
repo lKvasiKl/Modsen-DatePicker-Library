@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { GridSlider, ThemeWrapper } from "components";
+
+import { GridSlider, ThemeWrapper } from "components/index";
 
 import { CALENDAR_TYPES } from "../types";
 

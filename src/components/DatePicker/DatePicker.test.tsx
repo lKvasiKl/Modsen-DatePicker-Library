@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { DatePicker, ThemeWrapper } from "components";
+
+import { DatePicker, ThemeWrapper } from "components/index";
 
 const Calendar = () => <div data-testid="calendar">Mock Calendar</div>;
 
