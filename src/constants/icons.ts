@@ -10,4 +10,4 @@ export const ICONS = {
   close: CloseIcon,
   nextGrid: NextIcon,
   prevGrid: PrevIcon,
-};
+} as const;
