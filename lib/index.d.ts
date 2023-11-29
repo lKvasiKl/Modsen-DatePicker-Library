@@ -7,3 +7,4 @@ export { default as withTodos } from "decorators/withTodos";
 export { default as withWeekends } from "decorators/withWeekends";
 export { useDate } from "providers/DateProvider";
 export { default as DatePicker } from "components/DatePicker";
+export { default as Calendar } from "components/Calendar";
