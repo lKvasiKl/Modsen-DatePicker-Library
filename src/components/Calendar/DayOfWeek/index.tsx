@@ -41,14 +41,17 @@ const DayofWeek = React.memo((props: DayOfWeekProps) => {
       setSelectedMonth(month);
       setSelectedYear(year);
 
-      if (isWithRange && (!range || (!range.rangeStart && !range.rangeEnd))) {
-        setRange({ rangeStart: dayOfWeek, rangeEnd: undefined });
-      } else {
-        const start = range && range.rangeStart ? range.rangeStart : dayOfWeek;
-        const rangeArr =
-          dayOfWeek < start ? [dayOfWeek, start] : [start, dayOfWeek];
+      if (isWithRange) {
+        if (!range || (!range.rangeStart && !range.rangeEnd)) {
+          setRange({ rangeStart: dayOfWeek, rangeEnd: undefined });
+        } else {
+          const start =
+            range && range.rangeStart ? range.rangeStart : dayOfWeek;
+          const rangeArr =
+            dayOfWeek < start ? [dayOfWeek, start] : [start, dayOfWeek];
 
-        setRange({ rangeStart: rangeArr[0], rangeEnd: rangeArr[1] });
+          setRange({ rangeStart: rangeArr[0], rangeEnd: rangeArr[1] });
+        }
       }
     }
   }, [
