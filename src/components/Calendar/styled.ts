@@ -16,4 +16,5 @@ export const CalendarContainer = styled(Container)<CalendarStyledProps>`
     $isRangeExist || $isTodosEnabled ? `8px 8px 0 0` : "8px"};
   padding: 10px;
   flex-direction: column;
+  width: fit-content;
 `;
