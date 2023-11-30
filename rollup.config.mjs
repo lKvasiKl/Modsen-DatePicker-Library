@@ -5,9 +5,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import svg from "rollup-plugin-svg";
-import copy from "rollup-plugin-copy-assets";
 import alias from "@rollup/plugin-alias";
+import image from "@rollup/plugin-image";
 
 export default [
   {
@@ -48,9 +47,8 @@ export default [
           ".svg",
         ],
       }),
-      svg(),
-      copy({ assets: ["./src/assets"] }),
       commonjs(),
+      image(),
       alias({
         entries: [
           {
