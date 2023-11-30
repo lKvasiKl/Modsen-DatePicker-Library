@@ -45,40 +45,38 @@ const Calendar = (props: CalendarProps) => {
     <ThemeWrapper>
       <ErrorBoundary>
         <CalendarProvider>
-          <DateProvider>
-            <CalendarContainer
-              $isRangeExist={isRangeExist}
-              $isTodosEnabled={isTodosEnabled}
-              data-testid="calendar"
-            >
-              <GridSlider
-                isMondayFirst={isMondayFirst}
-                maxDate={maxDate}
-                minDate={minDate}
-                type={type}
-              />
-              {(type === Week || type === Month) && (
-                <WeekdaysHeader isMondayFirst={isMondayFirst} />
-              )}
-              <DayOfWeekGrid
-                isHolidayDate={isHolidayDate}
-                isMondayFirst={isMondayFirst}
-                isTodosEnabled={isTodosEnabled}
-                isWeekendDate={isWeekendDate}
-                isWithRange={isWithRange}
-                maxDate={maxDate}
-                minDate={minDate}
-                type={type}
-              />
-            </CalendarContainer>
-            {isRangeExist && (
-              <Button
-                $isTodosEnabled={isTodosEnabled}
-                title={CLEAR_BUTTON_TITLE}
-                onButtonClick={handlClearButtonClick}
-              />
+          <CalendarContainer
+            $isRangeExist={isRangeExist}
+            $isTodosEnabled={isTodosEnabled}
+            data-testid="calendar"
+          >
+            <GridSlider
+              isMondayFirst={isMondayFirst}
+              maxDate={maxDate}
+              minDate={minDate}
+              type={type}
+            />
+            {(type === Week || type === Month) && (
+              <WeekdaysHeader isMondayFirst={isMondayFirst} />
             )}
-          </DateProvider>
+            <DayOfWeekGrid
+              isHolidayDate={isHolidayDate}
+              isMondayFirst={isMondayFirst}
+              isTodosEnabled={isTodosEnabled}
+              isWeekendDate={isWeekendDate}
+              isWithRange={isWithRange}
+              maxDate={maxDate}
+              minDate={minDate}
+              type={type}
+            />
+          </CalendarContainer>
+          {isRangeExist && (
+            <Button
+              $isTodosEnabled={isTodosEnabled}
+              title={CLEAR_BUTTON_TITLE}
+              onButtonClick={handlClearButtonClick}
+            />
+          )}
         </CalendarProvider>
       </ErrorBoundary>
     </ThemeWrapper>
