@@ -18,8 +18,7 @@ export const ButtonContainer = styled(Button)<ButtonStyledProps>`
   border-bottom: ${({ $isTodosEnabled }) => $isTodosEnabled && `none`};
   border-radius: ${({ $isTodosEnabled }) =>
     $isTodosEnabled ? "0" : "0 0 8px 8px"};
-  width: 100%;
-  min-width: 224px;
+  min-width: 246px;
   justify-content: space-between;
 
   &:hover {
