@@ -2,7 +2,7 @@ import { ComponentType, useCallback, useState } from "react";
 
 import { useCalendar } from "providers/CalendarProvider";
 
-import { Button, TodosModal } from "components/index";
+import { Button, ThemeWrapper, TodosModal } from "components/index";
 import { CalendarProps } from "components/Calendar/types";
 
 import usePortal from "hooks/usePortal";
@@ -34,7 +34,7 @@ const withTodo = <T extends WithRangeProps>(
     const isTodosExist = todos.length !== 0;
 
     return (
-      <>
+      <ThemeWrapper>
         <WrappedComponent {...(props as T)} isTodosEnabled={true} />
         <Button
           title={isTodosExist ? VIEW_TASK_BUTTON_TITLE : ADD_TASK_BUTTON_TITLE}
@@ -42,7 +42,7 @@ const withTodo = <T extends WithRangeProps>(
         />
         {isTodoModalOpen &&
           todosPortal(<TodosModal onClose={handleCloseTodoModal} />)}
-      </>
+      </ThemeWrapper>
     );
   };
 
