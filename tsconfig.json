@@ -15,7 +15,7 @@
     "noFallthroughCasesInSwitch": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
