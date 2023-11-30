@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { DateProvider, useDate } from "providers/DateProvider";
+import { useDate } from "providers/DateProvider";
 import { CalendarProvider } from "providers/CalendarProvider";
 
 import {
