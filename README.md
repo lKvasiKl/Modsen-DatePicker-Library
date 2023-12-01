@@ -41,6 +41,7 @@ import {
   DateProvider,
   withTodos,
   DatePicker,
+  CalendarProvider,
 } from "@lkvasikl/modsen-datepicker-library";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -58,13 +59,18 @@ const Calendar = calendarService.getCalendar();
 const renderApp = () => {
   root.render(
     <>
-      <DateProvider>
-        <Calendar
-          minDate={new Date(2023, 0, 1)}
-          maxDate={new Date(2025, 11, 1)}
-        />
-      </DateProvider>
-      <DatePicker label="Date" Calendar={Calendar} />
+      <CalendarProvider>
+        <DateProvider>
+          <Calendar
+            minDate={new Date(2023, 0, 1)}
+            maxDate={new Date(2025, 11, 1)}
+          />
+        </DateProvider>
+      </CalendarProvider>
+
+      <CalendarProvider>
+        <DatePicker label="Date" Calendar={Calendar} />
+      </CalendarProvider>
     </>,
   );
 };
@@ -78,6 +84,17 @@ A class that has **two methods**:
 
 1. **getCalendar()** - allows you to get a calendar component;
 2. **addDecorator(decorator)** - allows you to add functionality to your calendar.
+
+For the calendar to work correctly, you **MUST** to wrap it in **CalendarProvider**.
+
+```javascript
+const calendarService = new CalendarService();
+const Calendar = calendarService.getCalendar();
+
+<CalendarProvider>
+  <Calendar />
+</CalendarProvider>;
+```
 
 #### Functionality description [decorator]:
 
@@ -95,9 +112,11 @@ To set the minimum and maximum dates, you **MUST** wrap the component in DatePro
 const calendarService = new CalendarService();
 const Calendar = calendarService.getCalendar();
 
-<DateProvider>
-  <Calendar minDate={new Date(2023, 0, 1)} maxDate={new Date(2025, 11, 1)} />
-</DateProvider>;
+<CalendarProvider>
+  <DateProvider>
+    <Calendar minDate={new Date(2023, 0, 1)} maxDate={new Date(2025, 11, 1)} />
+  </DateProvider>
+</CalendarProvider>;
 ```
 
 You can also use the ready-made **DatePicker** component. You need to pass the following props into it:
@@ -109,7 +128,9 @@ You can also use the ready-made **DatePicker** component. You need to pass the f
 const calendarService = new CalendarService();
 const Calendar = calendarService.getCalendar();
 
-<DatePicker label="Date" Calendar={Calendar} />;
+<CalendarProvider>
+  <DatePicker label="Date" Calendar={Calendar} />
+</CalendarProvider>;
 ```
 
 ## Содержание
