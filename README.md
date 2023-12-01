@@ -4,6 +4,114 @@
 
 This library allows you to add a calendar to your application. It is also possible to add functionality to the calendar using various decorators.
 
+## Installation
+
+For the library to work correctly you need:
+
+- install the styled-components package via npm or yarn:
+
+```
+npm install styled-components
+```
+
+```
+yarn add styled-components
+```
+
+- install the package via npm or yarn:
+
+```
+npm install @lkvasikl/modsen-datepicker-library
+```
+
+```
+yarn add @lkvasikl/modsen-datepicker-library
+```
+
+## Usage
+
+```javascript
+import ReactDOM from "react-dom/client";
+import {
+  CalendarService,
+  withWeekends,
+  withMondayFirst,
+  withHolidays,
+  withRange,
+  DateProvider,
+  withTodos,
+  DatePicker,
+} from "@lkvasikl/modsen-datepicker-library";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const calendarService = new CalendarService();
+
+calendarService.addDecorator(withMondayFirst);
+calendarService.addDecorator(withHolidays);
+calendarService.addDecorator(withWeekends);
+calendarService.addDecorator(withRange);
+calendarService.addDecorator(withTodos);
+
+const Calendar = calendarService.getCalendar();
+
+const renderApp = () => {
+  root.render(
+    <>
+      <DateProvider>
+        <Calendar
+          minDate={new Date(2023, 0, 1)}
+          maxDate={new Date(2025, 11, 1)}
+        />
+      </DateProvider>
+      <DatePicker label="Date" Calendar={Calendar} />
+    </>,
+  );
+};
+
+renderApp();
+```
+
+#### CalendarService:
+
+A class that has **two methods**:
+
+1. **getCalendar()** - allows you to get a calendar component;
+2. **addDecorator(decorator)** - allows you to add functionality to your calendar.
+
+#### Functionality description [decorator]:
+
+- **withMondayFirst**: you can use this decorator to display the calendar weekdays starting from Monday. By default - Sunday;
+- **withHolidays**: allows you to display Belarusian holidays in orange;
+- **withWeekends**: weekends are highlighted in red;
+- **withRange**: adds the ability to display a range of dates on the calendar;
+- **withTodos**: adds the ability to add and interact with a to-do list;
+- Pass the props **minDate** to set the minimum date in the Calendar;
+- Pass the props **maxDate** to set the maximum date in the Calendar.
+
+To set the minimum and maximum dates, you **MUST** wrap the component in DateProvider:
+
+```javascript
+const calendarService = new CalendarService();
+const Calendar = calendarService.getCalendar();
+
+<DateProvider>
+  <Calendar minDate={new Date(2023, 0, 1)} maxDate={new Date(2025, 11, 1)} />
+</DateProvider>;
+```
+
+You can also use the ready-made **DatePicker** component. You need to pass the following props into it:
+
+1. **label**: text that will be displayed above the input field;
+2. **Calendar**: calendar obtained using the function **getCalendar()**. It can be wrapped in the necessary decorators.
+
+```javascript
+const calendarService = new CalendarService();
+const Calendar = calendarService.getCalendar();
+
+<DatePicker label="Date" Calendar={Calendar} />;
+```
+
 ## Содержание
 
 - [Техническое задание](#Техническое-задание)

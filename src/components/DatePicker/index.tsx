@@ -18,7 +18,6 @@ import {
   Label,
   Error,
   DatePickerContainer,
-  CalendarWrapper,
   InfoContainer,
 } from "./styled";
 
@@ -85,9 +84,7 @@ const DatePicker = React.memo(
               />
             )}
           </DatePickerInputWrapper>
-          <CalendarWrapper ref={calendarRef}>
-            {isCalendarOpen && <Calendar />}
-          </CalendarWrapper>
+          <div ref={calendarRef}>{isCalendarOpen && <Calendar />}</div>
         </DatePickerContainer>
       </ThemeWrapper>
     );

@@ -30,7 +30,6 @@ export const DatePickerInputWrapper = styled(Container)`
   width: 246px;
   justify-content: flex-start;
   border-radius: 8px;
-  position: relative;
 `;
 
 export const InfoContainer = styled(Container)`
@@ -43,9 +42,4 @@ export const Error = styled.span`
   font-size: ${fontSizeS}px;
   font-weight: ${fontWeightS};
   color: ${redColor};
-`;
-
-export const CalendarWrapper = styled.div`
-  position: absolute;
-  top: 56%;
 `;
