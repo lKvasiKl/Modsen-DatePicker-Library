@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useCalendar } from "providers/CalendarProvider";
 import { useDate } from "providers/DateProvider";
 
-import { DatePickerInput } from "components/index";
+import { DatePickerInput, ThemeWrapper } from "components/index";
 
 import useClickOutside from "hooks/useClickOutside";
 
@@ -59,35 +59,37 @@ const DatePicker = React.memo(
     }, [setRange]);
 
     return (
-      <DatePickerContainer>
-        <InfoContainer>
-          <Label>{label}</Label>
-          {error && <Error>{error}</Error>}
-        </InfoContainer>
-        <DatePickerInputWrapper>
-          <Icon
-            data-testid="calendar-icon-button"
-            src={calendar}
-            onClick={handleCalendarIconClick}
-          />
-          <DatePickerInput
-            inputValue={rangeValue || inputValue}
-            setError={setError}
-            setInputValue={setInputValue}
-            setIsCalendarOpen={setIsCalendarOpen}
-          />
-          {inputValue && (
+      <ThemeWrapper>
+        <DatePickerContainer>
+          <InfoContainer>
+            <Label>{label}</Label>
+            {error && <Error>{error}</Error>}
+          </InfoContainer>
+          <DatePickerInputWrapper>
             <Icon
-              data-testid="clear-icon-button"
-              src={clear}
-              onClick={handleClearInput}
+              data-testid="calendar-icon-button"
+              src={calendar}
+              onClick={handleCalendarIconClick}
             />
-          )}
-        </DatePickerInputWrapper>
-        <CalendarWrapper ref={calendarRef}>
-          {isCalendarOpen && <Calendar />}
-        </CalendarWrapper>
-      </DatePickerContainer>
+            <DatePickerInput
+              inputValue={rangeValue || inputValue}
+              setError={setError}
+              setInputValue={setInputValue}
+              setIsCalendarOpen={setIsCalendarOpen}
+            />
+            {inputValue && (
+              <Icon
+                data-testid="clear-icon-button"
+                src={clear}
+                onClick={handleClearInput}
+              />
+            )}
+          </DatePickerInputWrapper>
+          <CalendarWrapper ref={calendarRef}>
+            {isCalendarOpen && <Calendar />}
+          </CalendarWrapper>
+        </DatePickerContainer>
+      </ThemeWrapper>
     );
   },
 );

@@ -1,5 +1,9 @@
 # Tестовое задание библиотека Modsen DatePicker
 
+## About the library
+
+This library allows you to add a calendar to your application. It is also possible to add functionality to the calendar using various decorators.
+
 ## Содержание
 
 - [Техническое задание](#Техническое-задание)
