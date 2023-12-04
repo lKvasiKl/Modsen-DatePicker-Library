@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Install Yarn
         run: npm install -g yarn
+      - name: Enable corepack
+        run: corepack enable
       - name: Upgrade yarn
         run: yarn set version berry
       - name: Install Dependencies
