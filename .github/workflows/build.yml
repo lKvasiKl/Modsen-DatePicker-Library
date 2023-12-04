@@ -7,6 +7,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Upgrade yarn
+        run: yarn set version berry
+      - name: Install Dependencies
+        run: yarn install
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node.js
